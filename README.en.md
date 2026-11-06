@@ -1,5 +1,7 @@
 # Desktop App Project Kickoff Guide Library
 
+> **Appendix: [ui/ component library](./ui/README.md)** — 108 components + 7 integrations; see its README for preview, tests, and usage.
+
 **English** · [中文](./README.md)
 
 A collection of pre-project planning guides, reusable across projects. When starting a new project, **copy the whole `guides/` directory over**, follow the master outline stage by stage, and consult the deep-dive topic guides when you hit deep water.

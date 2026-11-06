@@ -1,96 +1,153 @@
-# @kickoff/ui —— 公共组件库
+# @kickoff/ui —— 前端公共组件库
 
-跨引擎一致的公共组件库首批交付（React 18 + TypeScript）。结构、纪律与积累机制 →《多平台一致组件库方案》《前端目录结构方案》。
+面向 Wails3 桌面应用的 React 18 + TypeScript 组件库。**源码直发、零运行时依赖**（消费方打包器负责编译），CSS 变量令牌驱动（light / dark 双主题）。
 
-## 结构
+> 定版范围与项目期验证交接单 → [`docs/交付清单.md`](./docs/交付清单.md) · 逐组件卡 → [`docs/COMPONENTS.md`](./docs/COMPONENTS.md)
+
+---
+
+## 定版范围（v1.2.0）
+
+| 维度 | 数量 |
+|---|---|
+| 通用组件（components/） | 108 源文件 |
+| 业务组件（business/） | 3（SearchForm · AdvancedTable · OrgSelector） |
+| 集成封装（integrations/） | 7（echarts / leaflet / monaco / xterm / tiptap / tldraw / qrcode） |
+| index.ts 导出名 | 193 |
+| playground 演示 | 116 项 / 10 分组 |
+| 测试 | 9 文件 · 85 用例全绿（已真实执行） |
+
+---
+
+## 快速开始（本地预览 playground）
+
+```bash
+# 1. 安装预览宿主依赖
+cd .preview
+npm install
+
+# 2. 建立依赖符号链接（仓库根的 node_modules → .preview/node_modules）
+cd ..
+ln -s .preview/node_modules node_modules
+
+# 3. 启动 playground
+cd .preview
+npx vite --port 5183
+```
+
+浏览器打开 **http://127.0.0.1:5183** —— 左侧 10 分组 / 118 个实时演示，点击即交互。
+
+> [!NOTE]
+> playground 是开发预览宿主，不是发布物。组件库本体在 `ui/` 源码目录。
+
+## 常用命令速查
+
+| 命令 | 作用 | 位置 |
+|---|---|---|
+| `npx vite --port 5183` | 启动 playground 预览 | `.preview/` |
+| `npx vite build` | 构建 playground 静态产物（→ `dist/`） | `.preview/` |
+| `npx vitest run` | 运行全部测试（85 用例） | `.preview/` |
+| `npx tsc -p tsconfig.ui.json` | 全库 strict 类型检查 | `.preview/` |
+| `node scripts/check.mjs` | 五项自查（重复导出/DOM 类型遮蔽/demo 导入/CSS 裸色值/id 重复） | `ui/` |
+
+## 在你的项目中使用
+
+### 迁移方式：整目录复制
+
+按跨项目资产规则，**把整个 `ui/` 目录复制到你的前端工程**（如 `frontend/src/ui/`），禁止 fork 式散抄——组件改动必须回流上游。Wails3 项目放入 `frontend/src/ui/` 后，`wails dev` / `wails build` 经由 Vite 编译，**无需任何预编译步骤**。
+
+### 消费代码
+
+```tsx
+// 只从桶导入（ui/index.ts 是唯一出口）
+import { Button, Table, MultiSelect, AppShell, exportCsv, ThemeProvider } from './ui/index';
+
+// 令牌：应用入口引入一次（唯一颜色/间距/圆角/动效源）
+import './ui/tokens/tokens.css';
+```
+
+```tsx
+// 典型组合：主题 + 应用外壳 + 数据网格
+<ThemeProvider defaultTheme="system">
+  <AppShell header="我的应用" sider={<nav>…</nav>} collapsible footer="就绪">
+    <Table
+      columns={[{ key: 'name', title: '名称', width: 200 }]}
+      rows={rows}
+      rowKey={(r) => r.id}
+      selection={{ selected, onChange: setSelected }}
+      scrollY={400}
+      virtual={{ rowHeight: 36 }}
+    />
+  </AppShell>
+</ThemeProvider>
+```
+
+主题切换：根节点设置 `data-theme="dark" | "light"`（跟随系统 + 手动覆盖的逻辑在应用层）。
+
+### 集成封装（按需安装 peer 库）
+
+`integrations/` 下的 7 个封装**不进桶导出**——用哪个装哪个的 peer 库，然后直接从文件引入：
+
+| 封装 | peer 库 |
+|---|---|
+| Chart（图表） | `echarts` |
+| Map（地图） | `leaflet`（CSS 由使用方引入） |
+| CodeEditor（代码编辑器） | `monaco-editor` |
+| Terminal（终端） | `@xterm/xterm` + `@xterm/addon-fit` |
+| RichText（富文本） | `@tiptap/react` + `@tiptap/pm` + `@tiptap/starter-kit` |
+| Whiteboard（白板） | `tldraw` |
+| QrCode（二维码） | `qrcode` |
+
+统一四件套模式：懒加载 peer 库 / Loading 兜底 / ResizeObserver 自适应 / 卸载即销毁。
+
+---
+
+## 目录结构
 
 ```
 ui/
-├── tokens/tokens.css     # 设计令牌单源（语义色/间距/圆角/字体/层级/动效，明暗两套）
-├── lib/cn.ts             # className 组合器
-├── components/           # 每组件：.tsx + .css
-├── business/             # 通用业务组件（三级组件中间层，三次规则入库）
-├── integrations/         # 外部库集成封装模板（懒加载/销毁/自适应；复制到项目并安装 peer 库，不入桶）
-├── tests/                # 核心交互测试（vitest + RTL，项目内运行）
-├── docs/COMPONENTS.md    # 组件卡目录（简版：API/状态/无障碍/待验证）
-├── docs/EXAMPLES.tsx     # 可运行示例（挂路由即全组件总览 + 冒烟入口）
-├── playground/           # 组件导航（分类菜单 + 实时交互演示，见下）
-├── index.ts              # 桶导出（消费方唯一入口）
-└── package.json
+├── index.ts            # 桶导出（唯一消费出口，193 导出名）
+├── package.json        # @kickoff/ui（private；peer: react/react-dom）
+├── tokens/             # 设计令牌（唯一颜色/间距/圆角/动效源，明暗两套）
+├── lib/                # 工具层：useFocusTrap · modalStack · timing · read · format · calendar · download · upload · portal
+├── components/         # 108 个通用组件（.tsx + 配套 .css）
+├── business/           # 业务组件：SearchForm · AdvancedTable · OrgSelector
+├── integrations/       # 7 个外部库集成封装
+├── playground/         # 演示注册表（registry + demos + 外壳）
+├── tests/              # 9 个测试文件 · 85 用例（vitest + RTL）
+├── scripts/check.mjs   # 五项自查脚本
+└── docs/               # 组件卡 · 全景 · 交付清单 · 可运行示例
 ```
 
-## 组件（91 个导出）
+## 文档索引
 
-- **基础**：Title · Text · Link · Kbd · VisuallyHidden · TextEllipsis · Tag · Avatar/Group · Divider · **Icon（注册表制）** · CopyToClipboard · CountUp
-- **布局**：Stack · Grid · Container · Card · ScrollArea · VirtualList
-- **导航**：Tabs（溢出滚动） · Breadcrumb · Pagination · Steps · SegmentedControl · DropdownMenu（分组/分隔线/窗口化） · ContextMenu · BackTop · **ToggleGroup** · **TreeMenu（树状菜单） · LinkedSelects（联动菜单）**
-- **文件对话框家族**：FileDialog（open/folder/save 三模式） · Upload（拖拽+**逐文件进度+取消**） · saveBlob/saveUrl/fetchWithProgress（下载原语，**可中止**）
-- **录入**：Button · IconButton · TextInput · Textarea · Checkbox · CheckboxGroup · Switch · Radio/Group · InputNumber · PasswordInput · SearchInput · Slider · Select（原生版） · SelectListbox（自绘） · AutoComplete · DatePicker（单月） · DateRangePicker · TimePicker · TagInput · Transfer · Cascader · Upload · **FormList · Rate · FormItem**
-- **展示**：Skeleton · Table（排序 + EditableCell） · Descriptions · Progress · Empty · Timeline · Collapse · Statistic · Badge · Spinner · Tree/TreeSelect · VirtualList（固定/动态行高） · **Calendar · Heatmap · Gauge · CodeBlock · Image · Comment · Countdown**
-- **反馈/浮层**：Modal · Toast · Tooltip（翻转/受控） · Alert · Result · ErrorBoundary · Popover（翻转） · Lightbox · CommandPalette · Drawer · HoverCard（翻转） · NotificationDrawer · Tour · GlobalProgressBar · **NotificationRouter（Toast/系统通知路由+降级+唤回）**
-- **收尾完成**：Cascader 键盘导航 · DatePicker 双面板 + 悬停预览 · Tree 拖拽（环检测内建） · Tooltip/HoverCard 定位翻转 · SelectListbox 长列表窗口化 · splitFile 分片原语
-- **读策略钩子**：useStaleWhileRevalidate（陈旧标记/迟到丢弃） · useAuthoritativeRead（决策点直读）——判定表 →《全局一致性读策略》
-- **未实现（有意）**：Menu 长列表虚拟化（同 SelectListbox 模式，需要时套用） · 剩余均为外部库集成封装（→《组件库全景》专项能力层）
-- **集成封装（不自研）**：图表 · 代码编辑器 · 地图 · 富文本 · RTC（包外部库，→《组件库全景》）
+| 文档 | 内容 |
+|---|---|
+| [`docs/COMPONENTS.md`](./docs/COMPONENTS.md) | 逐组件卡：能力、键盘、无障碍、待验证项 |
+| [`docs/交付清单.md`](./docs/交付清单.md) | 定版范围、质量门证据、项目期验证交接单 |
+| [`docs/组件库全景.md`](./docs/组件库全景.md) | 七层分类总图与选型 |
+| [`docs/EXAMPLES.tsx`](./docs/EXAMPLES.tsx) | 可运行示例（挂任意路由冒烟） |
 
-选型对应《多平台一致组件库方案》二档「输入 + 反馈 + 展示」优先级。
-
-## 使用
-
-```tsx
-import 'ui/tokens/tokens.css';        // 根组件引入一次（令牌）
-import { Button, TextInput, ToastProvider } from 'ui';
-
-<ToastProvider>
-  <Button variant="primary" loading={saving}>保存</Button>
-</ToastProvider>
-```
-
-主题切换：根节点设置 `data-theme="dark" | "light"`（跟随系统 + 手动覆盖的逻辑在应用层，→ 状态方案）。
+---
 
 ## 纪律（写新组件前必读）
 
-1. **样式只引用 `--ui-*` 令牌，禁裸值**（令牌审计覆盖本目录）
+1. **样式只引用 `--ui-*` 令牌，禁裸值**（`scripts/check.mjs` 第 4 项覆盖）
 2. **IME 纪律**：输入组件不拦截/不改写组合态值；格式化在 compositionEnd 后
 3. **无障碍**：每个可交互组件有完整语义与键盘路径；焦点可见；状态不只靠颜色
 4. **无障碍名称**：纯图标组件的 `label` 必填（类型强制）
-5. **模态弹框必须走 useFocusTrap（modal 模式）**：参与弹框栈（z-index 递增 / 滚动锁引用计数 / Escape 只关最上层），不得自写 body overflow
+5. **模态弹框必须走 useFocusTrap（modal 模式）**：参与弹框栈（z-index 推导 / 滚动锁引用计数 / Escape 只关最上层），不得自写 body overflow
 6. **零运行时依赖**：不引入 CSS-in-JS / UI 框架；CSP 友好
 7. **平台相关行为先验证**：未验证标注「待验证」（见组件卡），不标注待验证的行为不存在
 
-## 入库状态（四件套，→ 组件库方案）
+## 项目期验证清单（接手即做）
 
-| 件 | 状态 |
-|---|---|
-| 组件卡 | ✓ 简版（docs/COMPONENTS.md；三引擎截图随项目期补） |
-| 三引擎渲染冒烟 | 待项目期（EXAMPLES.tsx 挂路由即入口） |
-| 交互 + a11y 测试 | ✓ 12 组（components 7 + timing 5，含单飞/倒计时假时钟；项目内 vitest 运行） |
-| 可运行示例 | ✓ docs/EXAMPLES.tsx（总览页）+ playground/（分类导航，逐组件实时演示） |
+以下「待验证」项需要真实 Wails3 环境逐项核销（完整清单见交付清单第四节）：
 
-## 组件导航（Playground）
-
-`playground/PlaygroundApp` 是带**分类菜单 + 组件搜索 + 逐组件实时交互演示**的挂载页：
-
-```tsx
-import 'ui/tokens/tokens.css';
-import 'ui/playground/playground.css';
-import { PlaygroundApp } from 'ui/playground/PlaygroundApp';
-
-// 项目内挂到任意路由：/<PlaygroundApp />
-```
-
-- 分类结构 = 《组件库全景》七大类，登记表在 `playground/registry.tsx`（新组件先进 COMPONENTS.md 再进 registry）
-- 每个组件一个实时交互 demo（`playground/demos/` 按分类分文件），全部可操作
-- 外壳自带 NotificationRouter（含 ToastProvider）——通知/Toast/弹框类 demo 开箱即用
-- 集成期即三引擎冒烟统一入口：逐组件过一遍 = 逐组件截三引擎图
-
-## 消费方式
-
-整体复制 `ui/` 到项目（与 guides/ 同哲学），或建立 workspace 引用——**二选一并记录**（→ 组件库方案）。项目内改动必须回流本目录，禁止 fork 后静默修改。
-
-## 已声明的待验证项（汇总）
-
-- 三引擎 `:focus-visible`、组合态输入、绝对定位/翻转行为
-- WebView 环境下 `role=alert` 的播报时机
-- Linux focus-follows-mouse 合成器下 Modal 的稳定性
-- 引擎对 `prefers-reduced-motion` 的传递（WebView2/WebKitGTK）
+1. **三引擎一致性**：WebView2 / WebKitGTK / Chromium 逐组件冒烟
+2. **真实 IME**：TextInput / EditableText / PinInput / Mentions / AutoComplete 组合态
+3. **系统能力接线**：NotificationRouter 桥接注入、Terminal 接 pty、FileDialog 接真实 FS
+4. **网络与离线**：OfflineIndicator 的 WebView 事件可靠性、RichText 导出接 DOMPurify
+5. **持久化决策**：Whiteboard persistenceKey、Splitter 百分比落定、DatePicker 规范值
+6. **权限投影**：PermissionGate 权限键与领域层对齐
+7. **深树/大数据实压**：Cascader 搜索、VirtualizedTree、Table 虚拟滚动
