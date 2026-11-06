@@ -1,0 +1,209 @@
+/* Tabs / Breadcrumb / Pagination / Steps / SegmentedControl 共享导航样式 */
+
+.ui-tabs__list {
+  display: flex;
+  gap: var(--ui-space-2);
+  border-bottom: 1px solid var(--ui-border);
+  font-family: var(--ui-font);
+}
+
+.ui-tabs__tab {
+  border: none;
+  background: none;
+  padding: var(--ui-space-2) var(--ui-space-3);
+  font-size: var(--ui-text-md);
+  color: var(--ui-text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.ui-tabs__tab:hover:not(:disabled) {
+  color: var(--ui-text);
+}
+
+.ui-tabs__tab--active {
+  color: var(--ui-primary);
+  border-bottom-color: var(--ui-primary);
+  font-weight: 600;
+}
+
+.ui-tabs__tab:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+  border-radius: var(--ui-radius-sm);
+}
+
+.ui-breadcrumb {
+  font-family: var(--ui-font);
+  font-size: var(--ui-text-sm);
+}
+
+.ui-breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-space-2);
+}
+
+.ui-breadcrumb__sep {
+  color: var(--ui-text-muted);
+}
+
+.ui-breadcrumb__link {
+  color: var(--ui-text-muted);
+  text-decoration: none;
+}
+
+.ui-breadcrumb__link:hover {
+  color: var(--ui-primary);
+}
+
+.ui-breadcrumb__current {
+  color: var(--ui-text);
+}
+
+.ui-pagination {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-space-1);
+  font-family: var(--ui-font);
+}
+
+.ui-pagination__btn {
+  min-width: 28px;
+  height: 28px;
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-sm);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  font-size: var(--ui-text-sm);
+  cursor: pointer;
+}
+
+.ui-pagination__btn:hover:not(:disabled) {
+  border-color: var(--ui-primary);
+  color: var(--ui-primary);
+}
+
+.ui-pagination__btn--active {
+  background: var(--ui-primary);
+  border-color: var(--ui-primary);
+  color: var(--ui-on-primary);
+}
+
+.ui-pagination__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ui-pagination__ellipsis {
+  color: var(--ui-text-muted);
+  padding: 0 var(--ui-space-1);
+}
+
+.ui-steps {
+  display: flex;
+  gap: var(--ui-space-4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--ui-font);
+}
+
+.ui-steps__item {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-2);
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+}
+
+.ui-steps__dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--ui-radius-full);
+  border: 1px solid var(--ui-border-strong);
+  font-size: var(--ui-text-xs);
+}
+
+.ui-steps__item--done .ui-steps__dot {
+  background: var(--ui-success);
+  border-color: var(--ui-success);
+  color: var(--ui-on-primary);
+}
+
+.ui-steps__item--active .ui-steps__dot {
+  border-color: var(--ui-primary);
+  color: var(--ui-primary);
+  font-weight: 600;
+}
+
+.ui-steps__item--active {
+  color: var(--ui-text);
+}
+
+.ui-segmented {
+  display: inline-flex;
+  background: var(--ui-bg);
+  border-radius: var(--ui-radius-md);
+  padding: 2px;
+  font-family: var(--ui-font);
+}
+
+.ui-segmented__item {
+  border: none;
+  background: none;
+  padding: var(--ui-space-1) var(--ui-space-3);
+  border-radius: var(--ui-radius-sm);
+  font-size: var(--ui-text-sm);
+  color: var(--ui-text-muted);
+  cursor: pointer;
+}
+
+.ui-segmented__item--active {
+  background: var(--ui-surface-raised);
+  color: var(--ui-text);
+  font-weight: 600;
+  box-shadow: var(--ui-shadow-sm);
+}
+
+.ui-segmented__item:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}
+
+/* Tabs 溢出滚动 */
+.ui-tabs {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+}
+
+.ui-tabs__list {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.ui-tabs__list::-webkit-scrollbar {
+  display: none;
+}
+
+.ui-tabs__navbtn {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-sm);
+  background: var(--ui-surface);
+  color: var(--ui-text-muted);
+  cursor: pointer;
+  font-size: var(--ui-text-md);
+}
+
+.ui-tabs__navbtn:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}

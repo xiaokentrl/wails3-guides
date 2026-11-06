@@ -1,0 +1,106 @@
+.ui-tree {
+  font-family: var(--ui-font);
+  font-size: var(--ui-text-md);
+  color: var(--ui-text);
+  user-select: none;
+}
+
+.ui-tree__item {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  border-radius: var(--ui-radius-sm);
+  padding-block: 2px;
+}
+
+.ui-tree__item--selected > .ui-tree__label,
+.ui-tree__item--selected > .ui-tree__switcher {
+  color: var(--ui-primary);
+}
+
+.ui-tree__item--selected {
+  background: var(--ui-primary-soft);
+}
+
+.ui-tree__item--disabled {
+  opacity: 0.5;
+}
+
+.ui-tree__switcher {
+  flex: none;
+  width: 18px;
+  height: 20px;
+  border: none;
+  background: none;
+  color: var(--ui-text-muted);
+  cursor: pointer;
+  font-size: var(--ui-text-xs);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ui-tree__switcher--leaf {
+  cursor: default;
+}
+
+.ui-tree__switcher:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+  border-radius: var(--ui-radius-sm);
+}
+
+.ui-tree__label {
+  border: none;
+  background: none;
+  padding: var(--ui-space-1) var(--ui-space-2);
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  border-radius: var(--ui-radius-sm);
+  flex: 1;
+  min-height: 24px;
+}
+
+.ui-tree__label:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}
+
+/* TreeSelect 的树容器 */
+.ui-listbox__list .ui-tree {
+  padding: var(--ui-space-1);
+}
+
+/* 勾选框（checkable 模式） */
+.ui-tree__check {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  margin: 0 4px 0 2px;
+  accent-color: var(--ui-primary);
+  cursor: pointer;
+}
+
+.ui-tree__check:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+  border-radius: var(--ui-radius-sm);
+}
+
+.ui-tree__check:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* 拖拽放置目标高亮 */
+.ui-tree__item--drop > .ui-tree__label,
+.ui-tree__item--drop > .ui-tree__switcher {
+  box-shadow: inset 0 -2px 0 var(--ui-primary);
+}
+
+.ui-tree__item--drop {
+  background: var(--ui-primary-soft);
+}

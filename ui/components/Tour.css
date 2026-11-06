@@ -1,0 +1,87 @@
+.ui-tour__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ui-z-modal);
+  font-family: var(--ui-font);
+  pointer-events: none;
+}
+
+.ui-tour__highlight {
+  border: 2px solid var(--ui-primary);
+  border-radius: var(--ui-radius-md);
+  box-shadow: 0 0 0 9999px var(--ui-tour-dim);
+  pointer-events: none;
+  transition: all var(--ui-motion-base) ease;
+}
+
+.ui-tour__card {
+  pointer-events: auto;
+  width: 320px;
+  background: var(--ui-surface-raised);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-lg);
+  box-shadow: var(--ui-shadow-md);
+  padding: var(--ui-space-4);
+}
+
+.ui-tour__step {
+  font-size: var(--ui-text-xs);
+  color: var(--ui-text-muted);
+  margin-bottom: var(--ui-space-1);
+}
+
+.ui-tour__title {
+  margin: 0 0 var(--ui-space-2);
+  font-size: var(--ui-text-lg);
+  color: var(--ui-text);
+}
+
+.ui-tour__desc {
+  font-size: var(--ui-text-md);
+  color: var(--ui-text-muted);
+  margin-bottom: var(--ui-space-3);
+}
+
+.ui-tour__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-2);
+}
+
+.ui-tour__skip {
+  margin-right: auto;
+  border: none;
+  background: none;
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+  cursor: pointer;
+  font-family: var(--ui-font);
+}
+
+.ui-tour__skip:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+  border-radius: var(--ui-radius-sm);
+}
+
+.ui-tour__btn {
+  border: 1px solid var(--ui-border-strong);
+  border-radius: var(--ui-radius-md);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  font-size: var(--ui-text-sm);
+  padding: var(--ui-space-1) var(--ui-space-3);
+  cursor: pointer;
+  font-family: var(--ui-font);
+}
+
+.ui-tour__btn--primary {
+  background: var(--ui-primary);
+  border-color: var(--ui-primary);
+  color: var(--ui-on-primary);
+}
+
+.ui-tour__btn:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}

@@ -1,0 +1,49 @@
+.ui-comment {
+  display: flex;
+  gap: var(--ui-space-3);
+  font-family: var(--ui-font);
+}
+
+.ui-comment__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.ui-comment__meta {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ui-space-2);
+}
+
+.ui-comment__author {
+  font-size: var(--ui-text-md);
+  color: var(--ui-text);
+  font-weight: 600;
+}
+
+.ui-comment__time {
+  font-size: var(--ui-text-xs);
+  color: var(--ui-text-muted);
+}
+
+.ui-comment__content {
+  font-size: var(--ui-text-md);
+  color: var(--ui-text);
+  line-height: 1.6;
+  margin-top: 2px;
+}
+
+.ui-comment__actions {
+  display: flex;
+  gap: var(--ui-space-4);
+  margin-top: var(--ui-space-2);
+  font-size: var(--ui-text-sm);
+  color: var(--ui-text-muted);
+}
+
+/* 嵌套回复缩进 */
+.ui-comment .ui-comment {
+  margin-top: var(--ui-space-3);
+  padding-left: var(--ui-space-4);
+  border-left: 1px solid var(--ui-border);
+}

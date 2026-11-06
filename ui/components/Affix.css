@@ -1,0 +1,7 @@
+.ui-affix {
+  font-family: var(--ui-font);
+}
+
+.ui-affix--fixed {
+  z-index: var(--ui-z-popover);
+}

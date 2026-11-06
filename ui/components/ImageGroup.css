@@ -1,0 +1,14 @@
+.ui-image-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ui-space-2);
+}
+
+.ui-image-group img {
+  cursor: pointer;
+  transition: opacity var(--ui-motion-fast) ease;
+}
+
+.ui-image-group img:hover {
+  opacity: 0.85;
+}

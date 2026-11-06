@@ -1,0 +1,75 @@
+.ui-carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--ui-radius-lg);
+  font-family: var(--ui-font);
+}
+
+.ui-carousel__viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.ui-carousel__track {
+  display: flex;
+  transition: transform var(--ui-motion-base) ease;
+}
+
+.ui-carousel__slide {
+  flex: none;
+  width: 100%;
+}
+
+.ui-carousel__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--ui-radius-full);
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface-raised);
+  color: var(--ui-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.ui-carousel__arrow--left { left: var(--ui-space-3); }
+.ui-carousel__arrow--right { right: var(--ui-space-3); }
+
+.ui-carousel__arrow:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}
+
+.ui-carousel__dots {
+  position: absolute;
+  bottom: var(--ui-space-3);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--ui-space-1);
+}
+
+.ui-carousel__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--ui-radius-full);
+  border: none;
+  background: var(--ui-border-strong);
+  cursor: pointer;
+  padding: 0;
+}
+
+.ui-carousel__dot--active {
+  background: var(--ui-primary);
+  width: 20px;
+}
+
+.ui-carousel__dot:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}

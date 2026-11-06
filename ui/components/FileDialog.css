@@ -1,0 +1,108 @@
+.ui-filedialog__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-1);
+  flex-wrap: wrap;
+  margin-bottom: var(--ui-space-3);
+  font-size: var(--ui-text-sm);
+}
+
+.ui-filedialog__crumb,
+.ui-filedialog__crumb-wrap {
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+}
+
+.ui-filedialog__crumb {
+  border: none;
+  background: none;
+  padding: 2px var(--ui-space-1);
+  cursor: pointer;
+  border-radius: var(--ui-radius-sm);
+  font-family: var(--ui-font);
+}
+
+.ui-filedialog__crumb:hover {
+  color: var(--ui-primary);
+  background: var(--ui-bg);
+}
+
+.ui-filedialog__crumb:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}
+
+.ui-filedialog__list-wrap {
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+}
+
+.ui-filedialog__list {
+  list-style: none;
+  margin: 0;
+  padding: var(--ui-space-1);
+}
+
+.ui-filedialog__row {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-2);
+  width: 100%;
+  border: none;
+  background: none;
+  padding: var(--ui-space-2) var(--ui-space-3);
+  font-size: var(--ui-text-md);
+  font-family: var(--ui-font);
+  color: var(--ui-text);
+  cursor: pointer;
+  text-align: left;
+  border-radius: var(--ui-radius-sm);
+}
+
+.ui-filedialog__row:hover {
+  background: var(--ui-bg);
+}
+
+.ui-filedialog__row--selected,
+.ui-filedialog__row--selected:hover {
+  background: var(--ui-primary-soft);
+  color: var(--ui-primary);
+}
+
+.ui-filedialog__row:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}
+
+.ui-filedialog__icon {
+  color: var(--ui-text-muted);
+}
+
+.ui-filedialog__name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ui-filedialog__size {
+  font-size: var(--ui-text-xs);
+  color: var(--ui-text-muted);
+}
+
+.ui-filedialog__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--ui-space-2);
+  margin-top: var(--ui-space-3);
+}
+
+.ui-filedialog__hint {
+  margin-right: auto;
+  font-size: var(--ui-text-xs);
+  color: var(--ui-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

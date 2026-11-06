@@ -1,0 +1,119 @@
+/* Alert / Result / Popover 共享反馈样式 */
+
+.ui-alert {
+  padding: var(--ui-space-3) var(--ui-space-4);
+  border-radius: var(--ui-radius-md);
+  border: 1px solid var(--ui-border);
+  border-left-width: 3px;
+  font-family: var(--ui-font);
+}
+
+.ui-alert--info {
+  background: var(--ui-primary-soft);
+  border-left-color: var(--ui-info);
+}
+
+.ui-alert--success {
+  background: var(--ui-success-soft);
+  border-left-color: var(--ui-success);
+}
+
+.ui-alert--warning {
+  background: var(--ui-warning-soft);
+  border-left-color: var(--ui-warning);
+}
+
+.ui-alert--danger {
+  background: var(--ui-danger-soft);
+  border-left-color: var(--ui-danger);
+}
+
+.ui-alert__title {
+  font-weight: 600;
+  color: var(--ui-text);
+  margin-bottom: 2px;
+}
+
+.ui-alert__body {
+  color: var(--ui-text);
+  font-size: var(--ui-text-sm);
+}
+
+.ui-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ui-space-3);
+  padding: var(--ui-space-6);
+  font-family: var(--ui-font);
+  text-align: center;
+}
+
+.ui-result__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--ui-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--ui-text-lg);
+}
+
+.ui-result--success .ui-result__icon {
+  background: var(--ui-success-soft);
+  color: var(--ui-success);
+}
+
+.ui-result--error .ui-result__icon {
+  background: var(--ui-danger-soft);
+  color: var(--ui-danger);
+}
+
+.ui-result--empty .ui-result__icon {
+  background: var(--ui-bg);
+  color: var(--ui-text-muted);
+}
+
+.ui-result__title {
+  margin: 0;
+  font-size: var(--ui-text-lg);
+  color: var(--ui-text);
+}
+
+.ui-result__desc {
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-md);
+  max-width: 420px;
+}
+
+.ui-result__extra {
+  display: flex;
+  gap: var(--ui-space-2);
+}
+
+.ui-popover__wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.ui-popover {
+  position: absolute;
+  z-index: var(--ui-z-popover);
+  min-width: 180px;
+  padding: var(--ui-space-3);
+  border-radius: var(--ui-radius-md);
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface-raised);
+  box-shadow: var(--ui-shadow-md);
+  font-family: var(--ui-font);
+  font-size: var(--ui-text-md);
+  color: var(--ui-text);
+}
+
+.ui-popover--top {
+  bottom: calc(100% + var(--ui-space-2));
+}
+
+.ui-popover--bottom {
+  top: calc(100% + var(--ui-space-2));
+}

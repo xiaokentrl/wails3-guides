@@ -1,0 +1,26 @@
+.ui-advtable__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ui-space-3);
+  padding: var(--ui-space-3) var(--ui-space-4);
+  border-bottom: 1px solid var(--ui-border);
+}
+
+.ui-advtable__toolbar:empty {
+  display: none;
+}
+
+.ui-advtable__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ui-space-3);
+  padding: var(--ui-space-3) var(--ui-space-4);
+  border-top: 1px solid var(--ui-border);
+}
+
+.ui-advtable__total {
+  font-size: var(--ui-text-sm);
+  color: var(--ui-text-muted);
+}

@@ -1,0 +1,28 @@
+.ui-heatmap {
+  display: flex;
+  gap: 3px;
+  font-family: var(--ui-font);
+}
+
+.ui-heatmap__col {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ui-heatmap__cell {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  background: var(--ui-bg);
+}
+
+.ui-heatmap__cell--empty {
+  visibility: hidden;
+}
+
+/* 强度 = 主色透明度阶梯（无裸色） */
+.ui-heatmap__cell--lv1 { background: var(--ui-primary); opacity: 0.25; }
+.ui-heatmap__cell--lv2 { background: var(--ui-primary); opacity: 0.45; }
+.ui-heatmap__cell--lv3 { background: var(--ui-primary); opacity: 0.7; }
+.ui-heatmap__cell--lv4 { background: var(--ui-primary); }

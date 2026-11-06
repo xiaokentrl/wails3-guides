@@ -1,0 +1,31 @@
+.ui-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-space-2);
+  font-family: var(--ui-font);
+}
+
+.ui-copy__trigger {
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-sm);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  padding: var(--ui-space-1) var(--ui-space-2);
+  font-size: var(--ui-text-sm);
+  cursor: pointer;
+}
+
+.ui-copy__trigger:hover {
+  border-color: var(--ui-primary);
+  color: var(--ui-primary);
+}
+
+.ui-copy__trigger:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}
+
+.ui-copy__done {
+  font-size: var(--ui-text-xs);
+  color: var(--ui-success);
+}

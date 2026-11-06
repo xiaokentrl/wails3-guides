@@ -1,0 +1,26 @@
+.ui-backtop {
+  position: fixed;
+  right: var(--ui-space-5);
+  bottom: var(--ui-space-5);
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-surface-raised);
+  color: var(--ui-text);
+  font-size: var(--ui-text-md);
+  cursor: pointer;
+  box-shadow: var(--ui-shadow-sm);
+  z-index: var(--ui-z-popover);
+  font-family: var(--ui-font);
+}
+
+.ui-backtop:hover {
+  border-color: var(--ui-primary);
+  color: var(--ui-primary);
+}
+
+.ui-backtop:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}

@@ -1,0 +1,59 @@
+.ui-thing {
+  display: flex;
+  gap: var(--ui-space-3);
+  font-family: var(--ui-font);
+}
+
+.ui-thing__avatar {
+  flex: none;
+  display: flex;
+  align-items: flex-start;
+}
+
+.ui-thing__main {
+  flex: 1;
+  min-width: 0;
+}
+
+.ui-thing__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--ui-space-2);
+}
+
+.ui-thing__titles {
+  min-width: 0;
+}
+
+.ui-thing__title {
+  color: var(--ui-text);
+  font-size: var(--ui-text-md);
+  font-weight: 500;
+}
+
+.ui-thing__desc {
+  margin-top: 2px;
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+}
+
+.ui-thing__actions {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-2);
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+}
+
+.ui-thing__content {
+  margin-top: var(--ui-space-2);
+  color: var(--ui-text);
+  font-size: var(--ui-text-md);
+}
+
+.ui-gradient-text {
+  font-family: var(--ui-font);
+  font-weight: 600;
+}

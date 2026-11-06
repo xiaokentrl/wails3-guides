@@ -1,0 +1,278 @@
+/* SelectListbox / AutoComplete / DropdownMenu / CommandPalette / DatePicker 共享浮层面板样式 */
+
+.ui-listbox {
+  position: relative;
+  display: inline-flex;
+  font-family: var(--ui-font);
+}
+
+.ui-listbox__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ui-space-2);
+  min-width: 160px;
+  height: 34px;
+  padding: 0 var(--ui-space-3);
+  border: 1px solid var(--ui-border-strong);
+  border-radius: var(--ui-radius-md);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  font-size: var(--ui-text-md);
+  font-family: var(--ui-font);
+  cursor: pointer;
+  text-align: left;
+}
+
+.ui-listbox__trigger:focus-visible {
+  outline: none;
+  border-color: var(--ui-primary);
+  box-shadow: var(--ui-focus-ring);
+}
+
+.ui-listbox__trigger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ui-listbox__placeholder {
+  color: var(--ui-text-muted);
+}
+
+.ui-listbox__arrow {
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-xs);
+}
+
+.ui-listbox__list {
+  position: absolute;
+  top: calc(100% + var(--ui-space-1));
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: var(--ui-space-1);
+  list-style: none;
+  max-height: 240px;
+  overflow-y: auto;
+  background: var(--ui-surface-raised);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  box-shadow: var(--ui-shadow-md);
+  z-index: var(--ui-z-popover);
+  outline: none;
+}
+
+.ui-listbox__option {
+  padding: var(--ui-space-2) var(--ui-space-3);
+  border-radius: var(--ui-radius-sm);
+  font-size: var(--ui-text-md);
+  color: var(--ui-text);
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ui-listbox__option--active {
+  background: var(--ui-bg);
+}
+
+.ui-listbox__option--selected {
+  color: var(--ui-primary);
+  font-weight: 600;
+}
+
+.ui-listbox__option--disabled {
+  color: var(--ui-text-muted);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 命令面板 / 菜单复用 */
+.ui-menu__item {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: var(--ui-space-2);
+  border: none;
+  background: none;
+  padding: var(--ui-space-2) var(--ui-space-3);
+  border-radius: var(--ui-radius-sm);
+  font-size: var(--ui-text-md);
+  font-family: var(--ui-font);
+  color: var(--ui-text);
+  cursor: pointer;
+  text-align: left;
+}
+
+.ui-menu__item--danger {
+  color: var(--ui-danger);
+}
+
+.ui-menu__item--active {
+  background: var(--ui-bg);
+}
+
+.ui-menu__item:disabled {
+  color: var(--ui-text-muted);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ui-menu__item:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}
+
+/* 菜单触发按钮（DropdownMenu 用，样式由调用方注入 trigger 内容） */
+.ui-menu__trigger {
+  border: none;
+  background: none;
+  padding: var(--ui-space-1);
+  font-family: var(--ui-font);
+  font-size: var(--ui-text-md);
+  color: var(--ui-text);
+  cursor: pointer;
+  border-radius: var(--ui-radius-sm);
+  display: inline-flex;
+  align-items: center;
+}
+
+.ui-menu__trigger:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}
+
+.ui-menu__list {
+  min-width: 160px;
+}
+
+/* DatePicker 面板 */
+.ui-datepicker {
+  position: absolute;
+  top: calc(100% + var(--ui-space-1));
+  left: 0;
+  padding: var(--ui-space-3);
+  background: var(--ui-surface-raised);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  box-shadow: var(--ui-shadow-md);
+  z-index: var(--ui-z-popover);
+  outline: none;
+  font-family: var(--ui-font);
+  user-select: none;
+}
+
+.ui-datepicker__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ui-space-2);
+  margin-bottom: var(--ui-space-2);
+}
+
+.ui-datepicker__month {
+  font-size: var(--ui-text-sm);
+  color: var(--ui-text);
+  font-weight: 600;
+}
+
+.ui-datepicker__nav {
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-sm);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+}
+
+.ui-datepicker__nav:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}
+
+.ui-datepicker__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 30px);
+  gap: 2px;
+}
+
+.ui-datepicker__weekday {
+  font-size: var(--ui-text-xs);
+  color: var(--ui-text-muted);
+  text-align: center;
+  line-height: 26px;
+}
+
+.ui-datepicker__day {
+  border: none;
+  background: none;
+  height: 30px;
+  border-radius: var(--ui-radius-sm);
+  font-size: var(--ui-text-sm);
+  font-family: var(--ui-font);
+  color: var(--ui-text);
+  cursor: pointer;
+}
+
+.ui-datepicker__day:hover {
+  background: var(--ui-bg);
+}
+
+.ui-datepicker__day--selected {
+  background: var(--ui-primary);
+  color: var(--ui-on-primary);
+  font-weight: 600;
+}
+
+.ui-datepicker__day--today:not(.ui-datepicker__day--selected) {
+  border: 1px solid var(--ui-primary);
+  color: var(--ui-primary);
+}
+
+.ui-datepicker__day--focused {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}
+
+/* 区间预览（DateRangePicker） */
+.ui-datepicker__day--inrange {
+  background: var(--ui-primary-soft);
+  border-radius: 0;
+}
+
+.ui-datepicker__hint-row {
+  margin-top: var(--ui-space-2);
+  font-size: var(--ui-text-xs);
+  color: var(--ui-text-muted);
+  text-align: center;
+}
+
+/* 双面板日期范围 */
+.ui-datepicker--dual {
+  display: flex;
+  gap: var(--ui-space-4);
+  right: auto;
+}
+
+.ui-datepicker__pane + .ui-datepicker__pane {
+  border-left: 1px solid var(--ui-border);
+  padding-left: var(--ui-space-4);
+}
+
+/* 菜单分组与分隔线 */
+.ui-menu__sep {
+  height: 1px;
+  margin: var(--ui-space-1) var(--ui-space-2);
+  background: var(--ui-border);
+  list-style: none;
+}
+
+.ui-menu__group-label {
+  padding: var(--ui-space-2) var(--ui-space-3) var(--ui-space-1);
+  font-size: var(--ui-text-xs);
+  color: var(--ui-text-muted);
+  list-style: none;
+  user-select: none;
+}

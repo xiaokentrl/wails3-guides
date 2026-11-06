@@ -1,0 +1,49 @@
+.ui-popselect {
+  position: relative;
+  display: inline-block;
+  font-family: var(--ui-font);
+}
+
+.ui-popselect--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.ui-popselect__trigger {
+  display: inline-flex;
+  cursor: pointer;
+  border-radius: var(--ui-radius-sm);
+}
+
+.ui-popselect__trigger:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}
+
+.ui-popselect__panel {
+  position: absolute;
+  top: calc(100% + var(--ui-space-1));
+  left: 0;
+  min-width: 140px;
+  max-height: 240px;
+  overflow-y: auto;
+  margin: 0;
+  padding: var(--ui-space-1);
+  list-style: none;
+  background: var(--ui-surface-raised);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  box-shadow: var(--ui-shadow-md);
+  z-index: var(--ui-z-popover);
+}
+
+.ui-popselect__option {
+  border-radius: var(--ui-radius-sm);
+}
+
+.ui-popselect__empty {
+  padding: var(--ui-space-2);
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+  text-align: center;
+}

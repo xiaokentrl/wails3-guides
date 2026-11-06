@@ -1,0 +1,79 @@
+.ui-appshell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  font-family: var(--ui-font);
+  background: var(--ui-bg);
+  color: var(--ui-text);
+}
+
+.ui-appshell__header {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-3);
+  height: 48px;
+  padding: 0 var(--ui-space-3);
+  background: var(--ui-surface);
+  border-bottom: 1px solid var(--ui-border);
+}
+
+.ui-appshell__body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
+.ui-appshell__sider {
+  flex: none;
+  min-width: 0; /* flex 子项默认 min-width:auto——nowrap 内容会把折叠宽度顶回去 */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--ui-surface);
+  border-right: 1px solid var(--ui-border);
+  transition: width var(--ui-motion-fast, 160ms) ease;
+  overflow: hidden;
+}
+
+.ui-appshell__sider-content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.ui-appshell__collapse {
+  flex: none;
+  height: 32px;
+  border: none;
+  border-top: 1px solid var(--ui-border);
+  background: var(--ui-surface);
+  color: var(--ui-text-muted);
+  cursor: pointer;
+}
+
+.ui-appshell__collapse:hover {
+  color: var(--ui-primary);
+  background: var(--ui-primary-soft);
+}
+
+.ui-appshell__content {
+  flex: 1;
+  min-width: 0;
+  overflow: auto;
+  padding: var(--ui-space-4);
+}
+
+.ui-appshell__footer {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-3);
+  height: 28px;
+  padding: 0 var(--ui-space-3);
+  background: var(--ui-surface);
+  border-top: 1px solid var(--ui-border);
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+}

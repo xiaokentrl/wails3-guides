@@ -1,0 +1,23 @@
+.ui-masonry {
+  display: flex;
+  gap: var(--ui-space-4);
+  align-items: flex-start;
+  font-family: var(--ui-font);
+}
+
+.ui-masonry__col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-space-4);
+}
+
+.ui-masonry__col > * {
+  min-width: 0;
+}
+
+/* 测量版：绝对定位容器 */
+.ui-masonry--measured {
+  display: block;
+}

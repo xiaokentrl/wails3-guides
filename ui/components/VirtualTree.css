@@ -1,0 +1,65 @@
+.ui-vtree {
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  background: var(--ui-surface);
+  font-family: var(--ui-font);
+  position: relative;
+}
+
+.ui-vtree:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}
+
+.ui-vtree__row {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-1);
+  padding: 0 var(--ui-space-2);
+  font-size: var(--ui-text-md);
+  color: var(--ui-text);
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.ui-vtree__row:hover {
+  background: var(--ui-bg);
+}
+
+.ui-vtree__row--active {
+  background: var(--ui-bg);
+}
+
+.ui-vtree__row--selected {
+  background: var(--ui-primary-soft);
+  color: var(--ui-primary);
+}
+
+.ui-vtree__row--disabled {
+  color: var(--ui-text-muted);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ui-vtree__chevron {
+  flex: none;
+  width: 16px;
+  text-align: center;
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+}
+
+.ui-vtree__chevron--open {
+  transform: rotate(90deg);
+  color: var(--ui-text);
+}
+
+.ui-vtree__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

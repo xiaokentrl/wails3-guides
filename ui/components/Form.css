@@ -1,0 +1,31 @@
+.ui-form {
+  font-family: var(--ui-font);
+}
+
+.ui-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-space-1);
+  margin-bottom: var(--ui-space-4);
+}
+
+.ui-form-field__label {
+  font-size: var(--ui-text-sm);
+  color: var(--ui-text);
+}
+
+.ui-form-field__required {
+  color: var(--ui-danger);
+  margin-inline-end: 2px;
+}
+
+.ui-form-field__control {
+  display: flex;
+  flex-direction: column;
+}
+
+.ui-form-field__error {
+  margin: 0;
+  font-size: var(--ui-text-xs);
+  color: var(--ui-danger);
+}

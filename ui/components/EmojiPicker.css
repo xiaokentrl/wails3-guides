@@ -1,0 +1,123 @@
+.ui-emoji {
+  position: relative;
+  display: inline-block;
+  font-family: var(--ui-font);
+}
+
+.ui-emoji--disabled {
+  opacity: 0.5;
+}
+
+.ui-emoji__trigger {
+  box-sizing: border-box;
+  height: 34px;
+  min-width: 40px;
+  padding: 0 var(--ui-space-2);
+  border: 1px solid var(--ui-border-strong);
+  border-radius: var(--ui-radius-md);
+  background: var(--ui-surface);
+  font-size: var(--ui-text-md);
+  cursor: pointer;
+}
+
+.ui-emoji__trigger:hover {
+  border-color: var(--ui-primary);
+}
+
+.ui-emoji__trigger:disabled {
+  cursor: not-allowed;
+}
+
+.ui-emoji__panel {
+  position: absolute;
+  top: calc(100% + var(--ui-space-1));
+  left: 0;
+  width: 264px;
+  padding: var(--ui-space-2);
+  background: var(--ui-surface-raised);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  box-shadow: var(--ui-shadow-md);
+  z-index: var(--ui-z-popover);
+}
+
+.ui-emoji__search {
+  box-sizing: border-box;
+  width: 100%;
+  height: 30px;
+  margin-bottom: var(--ui-space-2);
+  padding: 0 var(--ui-space-2);
+  border: 1px solid var(--ui-border-strong);
+  border-radius: var(--ui-radius-sm);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  font-size: var(--ui-text-sm);
+  font-family: var(--ui-font);
+}
+
+.ui-emoji__search:focus-visible {
+  outline: none;
+  border-color: var(--ui-primary);
+  box-shadow: var(--ui-focus-ring);
+}
+
+.ui-emoji__cat-label {
+  margin: var(--ui-space-1) 0;
+  font-size: var(--ui-text-sm);
+  color: var(--ui-text-muted);
+}
+
+.ui-emoji__tabs {
+  display: flex;
+  gap: var(--ui-space-1);
+  margin-bottom: var(--ui-space-2);
+  border-bottom: 1px solid var(--ui-border);
+}
+
+.ui-emoji__tab {
+  border: none;
+  background: none;
+  padding: var(--ui-space-1) var(--ui-space-2);
+  border-bottom: 2px solid transparent;
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+  font-family: var(--ui-font);
+  cursor: pointer;
+}
+
+.ui-emoji__tab--active {
+  color: var(--ui-primary);
+  border-bottom-color: var(--ui-primary);
+}
+
+.ui-emoji__grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 2px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.ui-emoji__cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  border: none;
+  border-radius: var(--ui-radius-sm);
+  background: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.ui-emoji__cell:hover {
+  background: var(--ui-bg);
+}
+
+.ui-emoji__empty {
+  grid-column: 1 / -1;
+  padding: var(--ui-space-3) 0;
+  text-align: center;
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+}

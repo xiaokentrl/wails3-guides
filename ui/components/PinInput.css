@@ -1,0 +1,40 @@
+.ui-pin {
+  display: inline-flex;
+  gap: var(--ui-space-2);
+  font-family: var(--ui-font);
+}
+
+.ui-pin__cell {
+  box-sizing: border-box;
+  width: 40px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid var(--ui-border-strong);
+  border-radius: var(--ui-radius-md);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  font-size: var(--ui-text-lg);
+  font-family: var(--ui-font-mono);
+  text-align: center;
+  caret-color: var(--ui-primary);
+  transition: border-color var(--ui-motion-fast) ease, box-shadow var(--ui-motion-fast) ease;
+}
+
+.ui-pin__cell:focus-visible {
+  outline: none;
+  border-color: var(--ui-primary);
+  box-shadow: var(--ui-focus-ring);
+}
+
+.ui-pin__cell--filled {
+  border-color: var(--ui-primary);
+}
+
+.ui-pin--error .ui-pin__cell {
+  border-color: var(--ui-danger);
+}
+
+.ui-pin__cell:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

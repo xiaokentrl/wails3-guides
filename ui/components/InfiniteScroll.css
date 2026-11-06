@@ -1,0 +1,20 @@
+.ui-infinite-scroll {
+  font-family: var(--ui-font);
+}
+
+.ui-infinite-scroll__sentinel {
+  padding: var(--ui-space-3);
+  text-align: center;
+}
+
+.ui-infinite-scroll__loading {
+  font-size: var(--ui-text-sm);
+  color: var(--ui-text-muted);
+}
+
+.ui-infinite-scroll__end {
+  padding: var(--ui-space-3);
+  text-align: center;
+  font-size: var(--ui-text-xs);
+  color: var(--ui-text-muted);
+}

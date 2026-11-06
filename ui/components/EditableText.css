@@ -1,0 +1,69 @@
+.ui-editable {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--ui-space-1);
+  max-width: 100%;
+  font-family: var(--ui-font);
+}
+
+.ui-editable--clickable {
+  cursor: text;
+  border-bottom: 1px dashed var(--ui-border-strong);
+  padding-bottom: 1px;
+}
+
+.ui-editable--clickable:hover {
+  border-bottom-color: var(--ui-primary);
+}
+
+.ui-editable--clickable:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+  border-radius: var(--ui-radius-sm);
+}
+
+.ui-editable__pen {
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+}
+
+.ui-editable__placeholder {
+  color: var(--ui-text-muted);
+}
+
+.ui-editable--editing {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.ui-editable__input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 160px;
+  padding: var(--ui-space-1) var(--ui-space-2);
+  border: 1px solid var(--ui-primary);
+  border-radius: var(--ui-radius-sm);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  font-size: inherit;
+  font-family: var(--ui-font);
+  line-height: inherit;
+}
+
+.ui-editable__input:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}
+
+.ui-editable__input--area {
+  resize: vertical;
+}
+
+.ui-editable__input--error {
+  border-color: var(--ui-danger);
+}
+
+.ui-editable__error {
+  color: var(--ui-danger);
+  font-size: var(--ui-text-sm);
+}

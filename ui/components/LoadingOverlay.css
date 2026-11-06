@@ -1,0 +1,43 @@
+.ui-loading-overlay__host {
+  position: relative;
+}
+
+.ui-loading-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ui-space-2);
+  background: var(--ui-overlay);
+  border-radius: inherit;
+  z-index: var(--ui-z-modal);
+}
+
+.ui-loading-overlay--non-blocking {
+  pointer-events: none;
+  background: transparent;
+}
+
+.ui-loading-overlay__spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--ui-border);
+  border-top-color: var(--ui-primary);
+  border-radius: var(--ui-radius-full);
+  animation: ui-lo-spin 0.8s linear infinite;
+}
+
+.ui-loading-overlay__text {
+  font-size: var(--ui-text-sm);
+  color: var(--ui-text);
+}
+
+@keyframes ui-lo-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-loading-overlay__spinner { animation: none; }
+}

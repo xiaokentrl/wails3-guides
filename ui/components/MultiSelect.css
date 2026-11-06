@@ -1,0 +1,163 @@
+.ui-multiselect {
+  position: relative;
+  display: inline-block;
+  font-family: var(--ui-font);
+}
+
+.ui-multiselect--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ui-multiselect--disabled .ui-listbox__trigger {
+  cursor: not-allowed;
+}
+
+/* 触发器内 tags 区（覆盖单选触发的单行文本布局） */
+.ui-multiselect__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-2);
+  min-width: 200px;
+  max-width: 360px;
+  height: auto;
+  min-height: 34px;
+  padding: calc(var(--ui-space-1) + 1px) var(--ui-space-2);
+  text-align: left;
+}
+
+.ui-multiselect__tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ui-space-1);
+  flex: 1;
+  min-width: 0;
+}
+
+.ui-multiselect__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 1px var(--ui-space-1);
+  border-radius: var(--ui-radius-sm);
+  background: var(--ui-primary-soft);
+  color: var(--ui-primary);
+  font-size: var(--ui-text-sm);
+  line-height: 1.6;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ui-multiselect__tag:hover {
+  background: var(--ui-bg);
+}
+
+.ui-multiselect__tag-x {
+  font-size: var(--ui-text-sm);
+  opacity: 0.7;
+}
+
+.ui-multiselect__tag:hover .ui-multiselect__tag-x {
+  opacity: 1;
+}
+
+.ui-multiselect__more {
+  font-size: var(--ui-text-sm);
+  color: var(--ui-text-muted);
+  white-space: nowrap;
+}
+
+/* 面板：listbox + 底部操作行 */
+.ui-multiselect__panel {
+  position: absolute;
+  top: calc(100% + var(--ui-space-1));
+  left: 0;
+  min-width: 200px;
+  max-width: 320px;
+  background: var(--ui-surface-raised);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  box-shadow: var(--ui-shadow-md);
+  z-index: var(--ui-z-popover);
+  overflow: hidden;
+}
+
+.ui-multiselect__list {
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.ui-multiselect__option {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-2);
+  height: auto;
+  min-height: 32px;
+  padding: var(--ui-space-1) var(--ui-space-2);
+}
+
+.ui-multiselect__checkbox {
+  box-sizing: border-box;
+  flex: none;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--ui-border-strong);
+  border-radius: var(--ui-radius-sm);
+  background: var(--ui-surface);
+  position: relative;
+}
+
+.ui-multiselect__checkbox--checked {
+  background: var(--ui-primary);
+  border-color: var(--ui-primary);
+}
+
+.ui-multiselect__checkbox--checked::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 0px;
+  width: 5px;
+  height: 9px;
+  border: solid var(--ui-on-primary, #fff);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.ui-multiselect__label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ui-multiselect__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ui-space-1) var(--ui-space-2);
+  border-top: 1px solid var(--ui-border);
+  background: var(--ui-surface);
+}
+
+.ui-multiselect__footer-btn {
+  border: none;
+  background: none;
+  padding: 2px 4px;
+  border-radius: var(--ui-radius-sm);
+  color: var(--ui-primary);
+  font-size: var(--ui-text-sm);
+  font-family: var(--ui-font);
+  cursor: pointer;
+}
+
+.ui-multiselect__footer-btn:hover {
+  background: var(--ui-primary-soft);
+}
+
+.ui-multiselect__count {
+  font-size: var(--ui-text-sm);
+  color: var(--ui-text-muted);
+}

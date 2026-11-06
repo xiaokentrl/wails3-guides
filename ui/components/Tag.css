@@ -1,0 +1,65 @@
+.ui-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-space-1);
+  padding: 0 var(--ui-space-2);
+  border-radius: var(--ui-radius-sm);
+  font-size: var(--ui-text-xs);
+  line-height: 22px;
+  white-space: nowrap;
+  font-family: var(--ui-font);
+}
+
+.ui-tag--neutral {
+  background: var(--ui-bg);
+  color: var(--ui-text);
+  border: 1px solid var(--ui-border);
+}
+
+.ui-tag--primary {
+  background: var(--ui-primary-soft);
+  color: var(--ui-primary);
+}
+
+.ui-tag__close {
+  border: none;
+  background: none;
+  padding: 0;
+  color: inherit;
+  opacity: 0.6;
+  cursor: pointer;
+  font-size: var(--ui-text-md);
+  line-height: 1;
+}
+
+.ui-tag__close:hover {
+  opacity: 1;
+}
+
+/* CheckableTag 可勾选标签（button 基底：可聚焦 + aria-pressed） */
+.ui-tag--checkable {
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  padding: 2px 10px;
+  font-size: var(--ui-text-sm);
+  font-family: var(--ui-font);
+  line-height: 1.6;
+  cursor: pointer;
+  transition: background var(--ui-motion-fast, 160ms) ease, color var(--ui-motion-fast, 160ms) ease;
+}
+
+.ui-tag--checkable:hover {
+  color: var(--ui-primary);
+}
+
+.ui-tag--checked {
+  background: var(--ui-primary);
+  border-color: var(--ui-primary);
+  color: var(--ui-on-primary, #fff);
+}
+
+.ui-tag--checkable-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,0 +1,23 @@
+
+/* month（3 列）/ year（4 列）格点视图 */
+.ui-datepicker__grid--cells3,
+.ui-datepicker__grid--cells4 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.ui-datepicker__grid--cells4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.ui-datepicker__grid--cells3 .ui-datepicker__day,
+.ui-datepicker__grid--cells4 .ui-datepicker__day {
+  height: 32px;
+}
+
+.ui-datepicker__weekinfo {
+  padding: var(--ui-space-1) var(--ui-space-2);
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+  border-top: 1px solid var(--ui-border);
+}

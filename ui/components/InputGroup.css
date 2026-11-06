@@ -1,0 +1,44 @@
+.ui-input-group {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--ui-border-strong);
+  border-radius: var(--ui-radius-md);
+  background: var(--ui-surface);
+  font-family: var(--ui-font);
+  overflow: hidden;
+}
+
+.ui-input-group:focus-within {
+  border-color: var(--ui-primary);
+  box-shadow: var(--ui-focus-ring);
+}
+
+.ui-input-group__prefix,
+.ui-input-group__suffix {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--ui-space-2);
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+  white-space: nowrap;
+}
+
+.ui-input-group__prefix {
+  border-right: 1px solid var(--ui-border);
+}
+
+.ui-input-group__suffix {
+  border-left: 1px solid var(--ui-border);
+}
+
+/* 内嵌 input 去边框（由InputGroup 统一管理边框） */
+.ui-input-group input {
+  border: none;
+  box-shadow: none;
+  flex: 1;
+}
+
+.ui-input-group input:focus-visible {
+  outline: none;
+  box-shadow: none;
+}

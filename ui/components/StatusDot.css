@@ -1,0 +1,26 @@
+.ui-status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--ui-radius-full);
+  flex: none;
+}
+
+.ui-status-dot--success { background: var(--ui-success); }
+.ui-status-dot--warning { background: var(--ui-warning); }
+.ui-status-dot--danger { background: var(--ui-danger); }
+.ui-status-dot--info { background: var(--ui-info); }
+.ui-status-dot--neutral { background: var(--ui-border-strong); }
+
+.ui-status-dot--pulse {
+  animation: ui-status-dot-pulse 2s ease infinite;
+}
+
+@keyframes ui-status-dot-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-status-dot--pulse { animation: none; }
+}

@@ -1,0 +1,56 @@
+.ui-mentions {
+  position: relative;
+  font-family: var(--ui-font);
+}
+
+.ui-mentions__input {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 72px;
+  padding: var(--ui-space-2) var(--ui-space-3);
+  border: 1px solid var(--ui-border-strong);
+  border-radius: var(--ui-radius-md);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  font-size: var(--ui-text-md);
+  resize: vertical;
+}
+
+.ui-mentions__input:focus-visible {
+  outline: none;
+  border-color: var(--ui-primary);
+  box-shadow: var(--ui-focus-ring);
+}
+
+.ui-mentions__panel {
+  position: absolute;
+  top: calc(100% + var(--ui-space-1));
+  left: 0;
+  margin: 0;
+  padding: var(--ui-space-1);
+  list-style: none;
+  max-height: 180px;
+  overflow-y: auto;
+  background: var(--ui-surface-raised);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  box-shadow: var(--ui-shadow-md);
+  z-index: var(--ui-z-popover);
+  min-width: 160px;
+}
+
+.ui-mentions__option {
+  padding: var(--ui-space-2) var(--ui-space-3);
+  border-radius: var(--ui-radius-sm);
+  font-size: var(--ui-text-md);
+  color: var(--ui-text);
+  cursor: pointer;
+}
+
+.ui-mentions__option--active {
+  background: var(--ui-bg);
+}
+
+.ui-mentions__option:hover {
+  background: var(--ui-bg);
+}

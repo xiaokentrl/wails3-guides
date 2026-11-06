@@ -1,0 +1,61 @@
+.ui-badge {
+  display: inline-block;
+  padding: 1px var(--ui-space-2);
+  border-radius: var(--ui-radius-full);
+  font-size: var(--ui-text-xs);
+  line-height: 18px;
+  white-space: nowrap;
+}
+
+.ui-badge--neutral {
+  background: var(--ui-bg);
+  color: var(--ui-text-muted);
+  border: 1px solid var(--ui-border);
+}
+
+.ui-badge--primary {
+  background: var(--ui-primary-soft);
+  color: var(--ui-primary);
+}
+
+.ui-badge--success {
+  background: var(--ui-success-soft);
+  color: var(--ui-success);
+}
+
+.ui-badge--warning {
+  background: var(--ui-warning-soft);
+  color: var(--ui-warning);
+}
+
+.ui-badge--danger {
+  background: var(--ui-danger-soft);
+  color: var(--ui-danger);
+}
+
+/* BadgeRibbon 缎带角标：折角 + 文案竖排角贴 */
+.ui-ribbon {
+  position: absolute;
+  padding: 3px 10px;
+  color: var(--ui-on-primary, #fff);
+  font-size: var(--ui-text-sm);
+  font-family: var(--ui-font);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.ui-ribbon--top-right,
+.ui-ribbon--bottom-right {
+  right: -10px;
+  border-radius: var(--ui-radius-sm) var(--ui-radius-sm) 0 0;
+  transform: rotate(45deg);
+  transform-origin: center;
+}
+
+.ui-ribbon--top-left,
+.ui-ribbon--bottom-left {
+  left: -10px;
+  border-radius: var(--ui-radius-sm) 0 var(--ui-radius-sm) var(--ui-radius-sm);
+  transform: rotate(-45deg);
+}
+

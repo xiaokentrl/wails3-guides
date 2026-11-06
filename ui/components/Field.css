@@ -1,0 +1,63 @@
+/* 字段壳层公共样式：label / 错误 / 提示，由 TextInput 与 Textarea 共享。 */
+
+.ui-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-space-1);
+  font-family: var(--ui-font);
+}
+
+.ui-field__label {
+  font-size: var(--ui-text-sm);
+  color: var(--ui-text);
+}
+
+.ui-field__hint {
+  margin: 0;
+  font-size: var(--ui-text-xs);
+  color: var(--ui-text-muted);
+}
+
+.ui-field__error {
+  margin: 0;
+  font-size: var(--ui-text-xs);
+  color: var(--ui-danger);
+}
+
+.ui-input,
+.ui-textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--ui-space-2) var(--ui-space-3);
+  border: 1px solid var(--ui-border-strong);
+  border-radius: var(--ui-radius-md);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  font-family: var(--ui-font);
+  font-size: var(--ui-text-md);
+  transition: border-color var(--ui-motion-fast) ease, box-shadow var(--ui-motion-fast) ease;
+}
+
+.ui-input::placeholder,
+.ui-textarea::placeholder {
+  color: var(--ui-text-muted);
+  opacity: 0.7;
+}
+
+.ui-input:focus-visible,
+.ui-textarea:focus-visible {
+  outline: none;
+  border-color: var(--ui-primary);
+  box-shadow: var(--ui-focus-ring);
+}
+
+.ui-input--error,
+.ui-textarea--error {
+  border-color: var(--ui-danger);
+}
+
+.ui-textarea {
+  min-height: 72px;
+  resize: vertical;
+  line-height: 1.5;
+}

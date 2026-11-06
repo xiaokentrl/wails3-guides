@@ -1,0 +1,38 @@
+
+/* 可编辑卡片型：关闭钮 + 新增把手 */
+.ui-tabs__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  margin-inline-start: 4px;
+  border-radius: var(--ui-radius-sm);
+  font-size: var(--ui-text-sm);
+  line-height: 1;
+  color: var(--ui-text-muted);
+  cursor: pointer;
+}
+
+.ui-tabs__close:hover {
+  background: var(--ui-danger-soft);
+  color: var(--ui-danger);
+}
+
+.ui-tabs__add {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  margin: 2px 0 2px 4px;
+  border: 1px dashed var(--ui-border-strong);
+  border-radius: var(--ui-radius-sm);
+  background: none;
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-md);
+  cursor: pointer;
+}
+
+.ui-tabs__add:hover {
+  color: var(--ui-primary);
+  border-color: var(--ui-primary);
+}

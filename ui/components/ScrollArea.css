@@ -1,0 +1,36 @@
+.ui-scrollarea {
+  overflow-y: auto;
+  font-family: var(--ui-font);
+}
+
+/* WebKit 系（WebView2 / WebKitGTK / WKWebView）滚动条令牌化 */
+.ui-scrollarea::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.ui-scrollarea::-webkit-scrollbar-thumb {
+  background: var(--ui-border-strong);
+  border-radius: var(--ui-radius-full);
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.ui-scrollarea::-webkit-scrollbar-thumb:hover {
+  background-color: var(--ui-text-muted);
+}
+
+.ui-scrollarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Firefox 系回退 */
+@supports (scrollbar-width: thin) {
+  .ui-scrollarea {
+    scrollbar-width: thin;
+    scrollbar-color: var(--ui-border-strong) transparent;
+  }
+  .ui-scrollarea::-webkit-scrollbar {
+    width: auto;
+  }
+}

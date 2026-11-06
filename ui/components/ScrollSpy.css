@@ -1,0 +1,43 @@
+.ui-scrollspy {
+  font-family: var(--ui-font);
+  font-size: var(--ui-text-sm);
+  color: var(--ui-text);
+}
+
+.ui-scrollspy__link {
+  display: block;
+  width: 100%;
+  border: none;
+  background: none;
+  text-align: left;
+  padding: var(--ui-space-1) var(--ui-space-3);
+  color: var(--ui-text-muted);
+  cursor: pointer;
+  border-radius: var(--ui-radius-sm);
+  border-left: 2px solid transparent;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.ui-scrollspy__link:hover {
+  color: var(--ui-text);
+}
+
+.ui-scrollspy__link--active {
+  color: var(--ui-primary);
+  border-left-color: var(--ui-primary);
+  font-weight: 600;
+}
+
+.ui-scrollspy__link:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}
+
+.ui-scrollspy__link--depth1 {
+  padding-left: var(--ui-space-6);
+}
+
+.ui-scrollspy__link--depth2 {
+  padding-left: var(--ui-space-8);
+}

@@ -1,0 +1,6 @@
+.ui-linked-selects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ui-space-3);
+  font-family: var(--ui-font);
+}

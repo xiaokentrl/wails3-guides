@@ -1,0 +1,73 @@
+.ui-popconfirm__wrapper {
+  position: relative;
+  display: inline-flex;
+  font-family: var(--ui-font);
+}
+
+.ui-popconfirm {
+  position: absolute;
+  top: calc(100% + var(--ui-space-2));
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 200px;
+  padding: var(--ui-space-3);
+  border-radius: var(--ui-radius-md);
+  border: 1px solid var(--ui-border);
+  background: var(--ui-surface-raised);
+  box-shadow: var(--ui-shadow-md);
+  z-index: var(--ui-z-popover);
+}
+
+.ui-popconfirm--danger .ui-popconfirm__btn--confirm {
+  background: var(--ui-danger);
+  border-color: var(--ui-danger);
+  color: var(--ui-on-primary);
+}
+
+.ui-popconfirm__title {
+  font-size: var(--ui-text-md);
+  font-weight: 600;
+  color: var(--ui-text);
+  margin-bottom: var(--ui-space-1);
+}
+
+.ui-popconfirm__desc {
+  font-size: var(--ui-text-sm);
+  color: var(--ui-text-muted);
+  margin-bottom: var(--ui-space-2);
+}
+
+.ui-popconfirm__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--ui-space-2);
+  margin-top: var(--ui-space-2);
+}
+
+.ui-popconfirm__btn {
+  border: 1px solid var(--ui-border-strong);
+  border-radius: var(--ui-radius-sm);
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  padding: var(--ui-space-1) var(--ui-space-3);
+  font-size: var(--ui-text-sm);
+  font-family: var(--ui-font);
+  cursor: pointer;
+}
+
+.ui-popconfirm__btn--confirm {
+  background: var(--ui-primary);
+  border-color: var(--ui-primary);
+  color: var(--ui-on-primary);
+}
+
+.ui-popconfirm__btn--danger.ui-popconfirm__btn--confirm {
+  background: var(--ui-danger);
+  border-color: var(--ui-danger);
+  color: var(--ui-on-primary);
+}
+
+.ui-popconfirm__btn:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}

@@ -1,0 +1,7 @@
+# 依赖（符号链接与实体包都不入库）
+node_modules
+.preview/node_modules/
+# 构建产物
+.preview/dist/
+# 调试产物
+*.log

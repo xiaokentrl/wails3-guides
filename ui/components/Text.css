@@ -1,0 +1,35 @@
+.ui-typography {
+  margin: 0;
+  font-family: var(--ui-font);
+  color: var(--ui-text);
+}
+
+.ui-title {
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.ui-title--1 { font-size: 24px; }
+.ui-title--2 { font-size: 20px; }
+.ui-title--3 { font-size: var(--ui-text-lg); }
+.ui-title--4 { font-size: var(--ui-text-md); }
+
+.ui-text {
+  font-size: var(--ui-text-md);
+  line-height: 1.6;
+}
+
+.ui-text--secondary { color: var(--ui-text-muted); }
+.ui-text--success { color: var(--ui-success); }
+.ui-text--warning { color: var(--ui-warning); }
+.ui-text--danger { color: var(--ui-danger); }
+.ui-text--strong { font-weight: 600; }
+
+/* 搜索命中高亮（Highlight 组件；<mark> 语义标签） */
+mark.ui-highlight__mark,
+.ui-highlight__mark {
+  background: var(--ui-warning-soft, rgba(185, 122, 18, 0.25));
+  color: inherit;
+  padding: 0 1px;
+  border-radius: var(--ui-radius-sm);
+}

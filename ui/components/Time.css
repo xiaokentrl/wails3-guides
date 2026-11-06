@@ -1,0 +1,5 @@
+.ui-time {
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+  font-family: var(--ui-font);
+}

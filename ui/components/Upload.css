@@ -1,0 +1,111 @@
+.ui-upload {
+  font-family: var(--ui-font);
+}
+
+.ui-upload__zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ui-space-2);
+  padding: var(--ui-space-6);
+  border: 1px dashed var(--ui-border-strong);
+  border-radius: var(--ui-radius-lg);
+  background: var(--ui-surface);
+  color: var(--ui-text-muted);
+  cursor: pointer;
+  transition: border-color var(--ui-motion-fast) ease, background var(--ui-motion-fast) ease;
+}
+
+.ui-upload__zone:hover,
+.ui-upload__zone:focus-visible,
+.ui-upload__zone--over {
+  outline: none;
+  border-color: var(--ui-primary);
+  background: var(--ui-primary-soft);
+}
+
+.ui-upload__hint {
+  font-size: var(--ui-text-md);
+  color: var(--ui-text);
+}
+
+.ui-upload__list {
+  list-style: none;
+  margin: var(--ui-space-3) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-space-2);
+}
+
+.ui-upload__item {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-3);
+  padding: var(--ui-space-2) var(--ui-space-3);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  background: var(--ui-surface);
+  font-size: var(--ui-text-sm);
+}
+
+.ui-upload__name {
+  flex: 1;
+  color: var(--ui-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ui-upload__size {
+  color: var(--ui-text-muted);
+}
+
+.ui-upload__retry {
+  border: none;
+  background: none;
+  color: var(--ui-primary);
+  font-size: var(--ui-text-sm);
+  cursor: pointer;
+  font-family: var(--ui-font);
+}
+
+.ui-upload__retry:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+  border-radius: var(--ui-radius-sm);
+}
+
+/* 逐文件进度条与取消 */
+.ui-upload__bar {
+  flex: none;
+  width: 80px;
+  height: 4px;
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-bg);
+  overflow: hidden;
+}
+
+.ui-upload__fill {
+  display: block;
+  height: 100%;
+  background: var(--ui-primary);
+  transition: width var(--ui-motion-fast) ease;
+}
+
+.ui-upload__percent {
+  font-size: var(--ui-text-xs);
+  color: var(--ui-text-muted);
+  min-width: 30px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.ui-upload__error {
+  font-size: var(--ui-text-xs);
+  color: var(--ui-danger);
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

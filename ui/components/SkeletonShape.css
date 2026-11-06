@@ -1,0 +1,22 @@
+.ui-skeleton-shape {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-space-2);
+  font-family: var(--ui-font);
+}
+
+.ui-skeleton-shape__item {
+  display: block;
+  background: linear-gradient(90deg, var(--ui-bg) 25%, var(--ui-surface-raised) 50%, var(--ui-bg) 75%);
+  background-size: 200% 100%;
+  animation: ui-skeleton-shape-wave 1.4s ease infinite;
+}
+
+@keyframes ui-skeleton-shape-wave {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-skeleton-shape__item { animation: none; }
+}

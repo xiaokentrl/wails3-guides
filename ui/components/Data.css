@@ -1,0 +1,524 @@
+/* Skeleton / Table / Descriptions / Progress / Empty / Timeline / Collapse / Statistic 共享展示样式 */
+
+.ui-skeleton {
+  display: inline-block;
+  border-radius: var(--ui-radius-sm);
+  background: linear-gradient(90deg, var(--ui-bg) 25%, var(--ui-surface-raised) 50%, var(--ui-bg) 75%);
+  background-size: 200% 100%;
+  animation: ui-skeleton-wave 1.4s ease infinite;
+}
+
+@keyframes ui-skeleton-wave {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+.ui-table-wrap {
+  overflow-x: auto;
+  font-family: var(--ui-font);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-lg);
+}
+
+.ui-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--ui-text-md);
+  color: var(--ui-text);
+}
+
+.ui-table th {
+  text-align: left;
+  padding: var(--ui-space-3) var(--ui-space-4);
+  background: var(--ui-bg);
+  font-weight: 600;
+  font-size: var(--ui-text-sm);
+  color: var(--ui-text-muted);
+  white-space: nowrap;
+}
+
+.ui-table td {
+  padding: var(--ui-space-3) var(--ui-space-4);
+  border-top: 1px solid var(--ui-border);
+}
+
+.ui-table tbody tr:hover {
+  background: var(--ui-bg);
+}
+
+.ui-table__empty {
+  text-align: center;
+  color: var(--ui-text-muted);
+  padding: var(--ui-space-6);
+}
+
+.ui-descriptions {
+  display: grid;
+  gap: var(--ui-space-2) var(--ui-space-5);
+  margin: 0;
+  font-family: var(--ui-font);
+}
+
+.ui-descriptions--cols-1 { grid-template-columns: 1fr; }
+.ui-descriptions--cols-2 { grid-template-columns: 1fr 1fr; }
+.ui-descriptions--cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+.ui-descriptions__row {
+  display: flex;
+  gap: var(--ui-space-2);
+}
+
+.ui-descriptions__label {
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+  white-space: nowrap;
+}
+
+.ui-descriptions__value {
+  margin: 0;
+  color: var(--ui-text);
+  font-size: var(--ui-text-md);
+  word-break: break-all;
+}
+
+.ui-progress {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-2);
+  font-family: var(--ui-font);
+}
+
+.ui-progress__label {
+  font-size: var(--ui-text-sm);
+  color: var(--ui-text);
+  white-space: nowrap;
+}
+
+.ui-progress__bar {
+  flex: 1;
+  height: 6px;
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-bg);
+  overflow: hidden;
+}
+
+.ui-progress__fill {
+  display: block;
+  height: 100%;
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-primary);
+  transition: width var(--ui-motion-base) ease;
+}
+
+.ui-progress__percent {
+  font-size: var(--ui-text-xs);
+  color: var(--ui-text-muted);
+  min-width: 34px;
+  text-align: right;
+}
+
+.ui-progress-ring {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--ui-radius-full);
+  background: radial-gradient(closest-side, var(--ui-surface) 78%, transparent 79% 100%),
+    conic-gradient(var(--ui-primary) var(--ui-progress), var(--ui-bg) 0);
+  font-family: var(--ui-font);
+}
+
+.ui-progress-ring__text {
+  font-size: var(--ui-text-sm);
+  color: var(--ui-text);
+}
+
+.ui-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ui-space-3);
+  padding: var(--ui-space-6);
+  font-family: var(--ui-font);
+}
+
+.ui-empty__text {
+  margin: 0;
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-md);
+}
+
+.ui-empty__action {
+  display: flex;
+  gap: var(--ui-space-2);
+}
+
+.ui-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--ui-font);
+}
+
+.ui-timeline__item {
+  position: relative;
+  padding: 0 0 var(--ui-space-4) var(--ui-space-5);
+  border-left: 1px solid var(--ui-border);
+}
+
+.ui-timeline__item:last-child {
+  border-left-color: transparent;
+}
+
+.ui-timeline__dot {
+  position: absolute;
+  left: -5px;
+  top: 4px;
+  width: 9px;
+  height: 9px;
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-primary);
+  border: 2px solid var(--ui-surface);
+  box-sizing: content-box;
+}
+
+.ui-timeline__title {
+  color: var(--ui-text);
+  font-size: var(--ui-text-md);
+}
+
+.ui-timeline__desc {
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+  margin-top: 2px;
+}
+
+.ui-timeline__time {
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-xs);
+  margin-top: 2px;
+}
+
+.ui-collapse {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-lg);
+  overflow: hidden;
+  font-family: var(--ui-font);
+}
+
+.ui-collapse__item + .ui-collapse__item {
+  border-top: 1px solid var(--ui-border);
+}
+
+.ui-collapse__summary {
+  padding: var(--ui-space-3) var(--ui-space-4);
+  cursor: pointer;
+  color: var(--ui-text);
+  font-size: var(--ui-text-md);
+  background: var(--ui-surface);
+  list-style: none;
+  user-select: none;
+}
+
+.ui-collapse__summary::-webkit-details-marker {
+  display: none;
+}
+
+.ui-collapse__summary::before {
+  content: '▸';
+  display: inline-block;
+  margin-right: var(--ui-space-2);
+  color: var(--ui-text-muted);
+  transition: transform var(--ui-motion-fast) ease;
+}
+
+.ui-collapse__item[open] .ui-collapse__summary::before {
+  transform: rotate(90deg);
+}
+
+.ui-collapse__summary:focus-visible {
+  outline: none;
+  box-shadow: inset var(--ui-focus-ring);
+}
+
+.ui-collapse__content {
+  padding: var(--ui-space-3) var(--ui-space-4);
+  color: var(--ui-text);
+  font-size: var(--ui-text-md);
+  border-top: 1px solid var(--ui-border);
+}
+
+.ui-statistic {
+  font-family: var(--ui-font);
+}
+
+.ui-statistic__title {
+  font-size: var(--ui-text-sm);
+  color: var(--ui-text-muted);
+}
+
+.ui-statistic__value {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--ui-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.ui-statistic__suffix {
+  font-size: var(--ui-text-md);
+  font-weight: 400;
+  margin-left: var(--ui-space-1);
+  color: var(--ui-text-muted);
+}
+
+/* Table 排序与可编辑单元格 */
+.ui-table__sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-space-1);
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: inherit;
+  cursor: pointer;
+}
+
+.ui-table__sort:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+  border-radius: var(--ui-radius-sm);
+}
+
+.ui-table__sort-icon {
+  font-size: var(--ui-text-xs);
+  opacity: 0.7;
+}
+
+.ui-editable {
+  border: 1px dashed transparent;
+  background: none;
+  padding: 2px var(--ui-space-1);
+  color: inherit;
+  font: inherit;
+  cursor: text;
+  border-radius: var(--ui-radius-sm);
+}
+
+.ui-editable:hover {
+  border-color: var(--ui-border-strong);
+}
+
+.ui-editable:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}
+
+.ui-editable__editing {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ui-editable__error {
+  font-size: var(--ui-text-xs);
+  color: var(--ui-danger);
+}
+
+/* GlobalProgressBar：顶部全局进度条 */
+.ui-global-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: var(--ui-z-toast);
+  background: transparent;
+  pointer-events: none;
+}
+
+.ui-global-progress__fill {
+  display: block;
+  height: 100%;
+  background: var(--ui-primary);
+  transition: width var(--ui-motion-base) ease;
+}
+
+.ui-global-progress--indeterminate .ui-global-progress__fill {
+  width: 40% !important;
+  animation: ui-global-progress-slide 1.2s ease-in-out infinite;
+}
+
+@keyframes ui-global-progress-slide {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(350%); }
+}
+
+/* Countdown 文本倒计时 */
+.ui-countdown {
+  font-variant-numeric: tabular-nums;
+  color: var(--ui-text);
+  font-family: var(--ui-font);
+}
+
+/* 滚动容器：表头吸顶（scrollY 场景） */
+.ui-table__scroll .ui-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--ui-surface-raised);
+  box-shadow: inset 0 -1px 0 var(--ui-border);
+}
+
+/* 数据表格增强：选择列 / 展开列 / 展开区 / 汇总行 */
+.ui-table__check {
+  width: 36px;
+  text-align: center;
+}
+
+.ui-table__check input {
+  accent-color: var(--ui-primary);
+  cursor: pointer;
+}
+
+.ui-table__expand {
+  width: 36px;
+  text-align: center;
+}
+
+.ui-table__expand button {
+  border: none;
+  background: none;
+  color: var(--ui-text-muted);
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: var(--ui-radius-sm);
+}
+
+.ui-table__expand button:hover {
+  color: var(--ui-primary);
+  background: var(--ui-primary-soft);
+}
+
+.ui-table__expanded-row > td {
+  background: var(--ui-bg);
+  padding: var(--ui-space-3);
+}
+
+/* 汇总行：scrollY 场景贴底吸附 */
+.ui-table__scroll tfoot td {
+  position: sticky;
+  bottom: 0;
+  background: var(--ui-surface);
+  font-weight: 600;
+  box-shadow: inset 0 1px 0 var(--ui-border);
+}
+
+/* 固定列：sticky 左右吸附（背景不透明防透视；th 的 top:0 吸顶来自滚动容器规则） */
+.ui-table th.ui-table__fixed {
+  z-index: 3;
+}
+
+.ui-table td.ui-table__fixed {
+  position: sticky;
+  z-index: 1;
+  background: var(--ui-surface);
+}
+
+.ui-table tbody tr:hover td.ui-table__fixed {
+  background: var(--ui-bg);
+}
+
+.ui-table__fixed + .ui-table__fixed,
+.ui-table td.ui-table__fixed {
+  box-shadow: inset 1px 0 0 var(--ui-border), inset -1px 0 0 var(--ui-border);
+}
+
+/* 列宽拖拽手柄：th 右缘 6px 热区 */
+.ui-table__resizer {
+  position: absolute;
+  top: 0;
+  right: -3px;
+  width: 6px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 4;
+  touch-action: none;
+}
+
+.ui-table__resizer:hover {
+  background: var(--ui-primary-soft);
+}
+
+.ui-table th {
+  position: relative;
+}
+
+/* 列筛选：漏斗按钮 + 勾选面板 */
+.ui-table__filterwrap {
+  position: relative;
+  display: inline-flex;
+  margin-inline-start: 4px;
+}
+
+.ui-table__filter {
+  border: none;
+  background: none;
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+  cursor: pointer;
+  padding: 0 2px;
+}
+
+.ui-table__filter--active {
+  color: var(--ui-primary);
+}
+
+.ui-table__filterpanel {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  min-width: 140px;
+  padding: var(--ui-space-2);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--ui-surface-raised);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
+  box-shadow: var(--ui-shadow-md);
+  z-index: 5;
+}
+
+.ui-table__filterrow {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-2);
+  font-size: var(--ui-text-sm);
+  color: var(--ui-text);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ui-table__filterrow input {
+  accent-color: var(--ui-primary);
+}
+
+.ui-table__filterclear {
+  margin-top: 4px;
+  border: none;
+  background: none;
+  color: var(--ui-primary);
+  font-size: var(--ui-text-sm);
+  text-align: left;
+  cursor: pointer;
+  padding: 2px 0;
+}
+
+.ui-table__filterclear:hover {
+  text-decoration: underline;
+}
