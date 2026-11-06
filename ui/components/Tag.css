@@ -53,10 +53,16 @@
   color: var(--ui-primary);
 }
 
+/* 选中态：hover 不改文字色（否则主色底 × 主色字不可读），仅轻微提亮 */
 .ui-tag--checked {
   background: var(--ui-primary);
   border-color: var(--ui-primary);
   color: var(--ui-on-primary, #fff);
+}
+
+.ui-tag--checkable.ui-tag--checked:hover {
+  color: var(--ui-on-primary, #fff);
+  filter: brightness(1.1);
 }
 
 .ui-tag--checkable-disabled {
