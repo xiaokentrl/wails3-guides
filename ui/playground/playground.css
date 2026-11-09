@@ -146,3 +146,39 @@
   color: var(--ui-text);
   font-family: var(--ui-font);
 }
+
+/* ===== 侧栏收起/展开 ===== */
+.ui-pg__sidebar {
+  transition: width var(--ui-motion-fast, 160ms) ease;
+  min-width: 0;
+}
+
+.ui-pg__sidebar--collapsed {
+  width: 0 !important;
+  border-right: none;
+  overflow: hidden;
+}
+
+/* 把手：贴侧栏右缘的窄条，收起后仍可见可点 */
+.ui-pg__collapse {
+  flex: none;
+  width: 16px;
+  align-self: stretch;
+  border: none;
+  border-inline: 1px solid var(--ui-border);
+  background: var(--ui-surface);
+  color: var(--ui-text-muted);
+  font-size: var(--ui-text-sm);
+  cursor: pointer;
+  padding: 0;
+}
+
+.ui-pg__collapse:hover {
+  color: var(--ui-primary);
+  background: var(--ui-primary-soft);
+}
+
+.ui-pg__collapse:focus-visible {
+  outline: none;
+  box-shadow: inset var(--ui-focus-ring);
+}

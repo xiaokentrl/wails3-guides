@@ -12,9 +12,29 @@ import './playground.css';
  * 挂载方式：把 PlaygroundApp 挂到项目任意路由（如 /ui）。
  * 外壳已提供 NotificationRouter（含 ToastProvider）——通知/Toast 类 demo 开箱即用。
  */
+const SIDEBAR_KEY = 'ui-playground-sidebar-collapsed';
+
+/** 侧栏收起态记忆（localStorage；读失败静默回退为展开） */
+function readCollapsed(): boolean {
+  try {
+    return localStorage.getItem(SIDEBAR_KEY) === '1';
+  } catch {
+    return false;
+  }
+}
+
+function writeCollapsed(v: boolean) {
+  try {
+    localStorage.setItem(SIDEBAR_KEY, v ? '1' : '0');
+  } catch {
+    /* 隐私模式等存储不可用：仅会话内记忆 */
+  }
+}
+
 export function PlaygroundApp() {
   const [activeId, setActiveId] = useState<string>(CATEGORIES[0].items[0].id);
   const [query, setQuery] = useState('');
+  const [collapsed, setCollapsed] = useState<boolean>(readCollapsed);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -40,7 +60,7 @@ export function PlaygroundApp() {
     >
       <div className="ui-pg">
         {/* 侧栏 */}
-        <aside className="ui-pg__sidebar">
+        <aside className={cn('ui-pg__sidebar', collapsed && 'ui-pg__sidebar--collapsed')}>
           <div className="ui-pg__brand">
             <span className="ui-pg__logo">◆</span>
             <span className="ui-pg__title">组件导航</span>
@@ -67,6 +87,23 @@ export function PlaygroundApp() {
             ))}
           </nav>
         </aside>
+
+        {/* 收起/展开把手：常驻可见 */}
+        <button
+          type="button"
+          className={cn('ui-pg__collapse', collapsed && 'ui-pg__collapse--collapsed')}
+          aria-expanded={!collapsed}
+          aria-label={collapsed ? '展开菜单' : '收起菜单'}
+          title={collapsed ? '展开菜单' : '收起菜单'}
+          onClick={() => {
+            setCollapsed((v) => {
+              writeCollapsed(!v);
+              return !v;
+            });
+          }}
+        >
+          {collapsed ? '›' : '‹'}
+        </button>
 
         {/* 主区 */}
         <main className="ui-pg__main">
