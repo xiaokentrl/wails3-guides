@@ -35,6 +35,9 @@ jobs:
         run: npm ci
         working-directory: .preview
 
+      - name: 建立依赖符号链接（ui/ 源文件解析 react 等依赖用）
+        run: ln -s .preview/node_modules node_modules
+
       - name: 类型检查（strict）
         run: npm run typecheck
         working-directory: .preview
