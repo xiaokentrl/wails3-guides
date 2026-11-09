@@ -57,8 +57,13 @@ export function PlaygroundApp() {
   const [collapsed, setCollapsed] = useState<boolean>(readCollapsed);
   // 一级菜单（分组）折叠集合 + 侧栏宽度（均可持久化）
   const [foldedGroups, setFoldedGroups] = useState<Set<string>>(() => new Set(readJSON<string[]>(GROUPS_KEY, [])));
-  const [width, setWidth] = useState<number>(() => Math.min(480, Math.max(160, Number(readJSON<number>(WIDTH_KEY, 240)) || 240)));
+  const [width, setWidth] = useState<number>(() => {
+    const stored = Number(readJSON<number>(WIDTH_KEY, 240)) || 240;
+    const maxW = Math.max(240, window.innerWidth - 160);
+    return Math.min(maxW, Math.max(0, stored));
+  });
   const dragRef = useRef<{ startX: number; startW: number } | null>(null);
+  const widthLimit = () => Math.max(240, window.innerWidth - 160); // 主区至少保留 160px 可用宽
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -168,12 +173,16 @@ export function PlaygroundApp() {
             onPointerMove={(e) => {
               const d = dragRef.current;
               if (!d) return;
-              const w = Math.min(480, Math.max(160, d.startW + (e.clientX - d.startX)));
+              const w = Math.min(widthLimit(), Math.max(0, d.startW + (e.clientX - d.startX)));
               setWidth(w);
               writeJSON(WIDTH_KEY, w);
             }}
             onPointerUp={() => {
               dragRef.current = null;
+            }}
+            onDoubleClick={() => {
+              setWidth(240);
+              writeJSON(WIDTH_KEY, 240);
             }}
           />
         )}
