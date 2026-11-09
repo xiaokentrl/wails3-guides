@@ -5,3 +5,6 @@ node_modules
 .preview/dist/
 # 调试产物
 *.log
+
+# CI 提取中间产物
+body.md
