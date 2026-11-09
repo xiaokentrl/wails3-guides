@@ -68,6 +68,8 @@ npm run build   # 一条命令双产物：dist/ 便携目录版 + dist/standalon
 > [!TIP]
 > **每次 push 到 main，GitHub Actions 自动打包并发布到 GitHub Pages**：
 > https://xiaokentrl.github.io/wails3-guides/ （便携版在线查看；`standalone.html` 同地址可下载）。
+>
+> **发版**：打 `v*` 标签并推送（`git tag -a v1.3.0 -m "…" && git push origin v1.3.0`），CI 自动创建 GitHub Release——双语说明自动从 RELEASES.md 提取，并附单文件 HTML 产物。
 
 | 产物（都在 `dist/`） | 查看方式 |
 |---|---|

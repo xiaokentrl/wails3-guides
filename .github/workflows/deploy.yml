@@ -8,6 +8,7 @@ name: build & deploy
 on:
   push:
     branches: [main]
+    tags: ['v*']
   workflow_dispatch:
 
 permissions:
@@ -80,3 +81,34 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # 打 v* 标签推送 → 自动创建 GitHub Release（双语说明从 RELEASES.md 提取，附单文件 HTML）
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # 创建 Release 与上传附件
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: .preview/package-lock.json
+
+      - run: npm ci
+        working-directory: .preview
+
+      - run: npm run build:single
+        working-directory: .preview
+
+      - name: 从 RELEASES.md 提取本版本双语说明
+        run: awk '/^### '"${GITHUB_REF_NAME}"'/{f=1} f&&/^---$/{exit} f' RELEASES.md > body.md
+
+      - name: 创建 GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: body.md
+          generate_release_notes: true
+          files: .preview/dist-single/index.html
