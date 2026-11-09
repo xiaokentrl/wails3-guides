@@ -62,8 +62,19 @@ export function PlaygroundApp() {
     const maxW = Math.max(240, window.innerWidth - 160);
     return Math.min(maxW, Math.max(0, stored));
   });
-  const dragRef = useRef<{ startX: number; startW: number } | null>(null);
+  // 把手一体化交互：点击 = 收起/展开，横向拖动 = 调宽（4px 阈值判别），双击 = 重置
+  const dragState = useRef<{ startX: number; startW: number; moved: boolean } | null>(null);
+  const suppressClick = useRef(false);
   const widthLimit = () => Math.max(240, window.innerWidth - 160); // 主区至少保留 160px 可用宽
+  const toggleCollapsed = () =>
+    setCollapsed((v) => {
+      writeCollapsed(!v);
+      return !v;
+    });
+  const setWidthPersist = (w: number) => {
+    setWidth(w);
+    writeJSON(WIDTH_KEY, w);
+  };
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -142,50 +153,59 @@ export function PlaygroundApp() {
           </nav>
         </aside>
 
-        {/* 收起/展开把手：常驻可见 */}
+        {/* 收起/展开 + 宽度拖拽：同一条把手（点击 = 收起展开，拖动 = 调宽，双击 = 重置 240） */}
         <button
           type="button"
           className={cn('ui-pg__collapse', collapsed && 'ui-pg__collapse--collapsed')}
           aria-expanded={!collapsed}
-          aria-label={collapsed ? '展开菜单' : '收起菜单'}
-          title={collapsed ? '展开菜单' : '收起菜单'}
+          aria-label={collapsed ? '展开菜单' : '收起菜单（拖动调宽，左右方向键微调，双击重置）'}
+          title={collapsed ? '展开菜单' : '拖动调宽 · 点击收起 · 双击重置'}
           onClick={() => {
-            setCollapsed((v) => {
-              writeCollapsed(!v);
-              return !v;
-            });
+            if (suppressClick.current) {
+              suppressClick.current = false; // 拖拽结束后的合成 click——不当作收起
+              return;
+            }
+            toggleCollapsed();
+          }}
+          onPointerDown={(e) => {
+            if (collapsed) return; // 收起态：点击即展开
+            dragState.current = { startX: e.clientX, startW: width, moved: false };
+            e.currentTarget.setPointerCapture(e.pointerId);
+          }}
+          onPointerMove={(e) => {
+            const d = dragState.current;
+            if (!d) return;
+            const dx = e.clientX - d.startX;
+            if (Math.abs(dx) > 4) d.moved = true;
+            setWidthPersist(Math.min(widthLimit(), Math.max(0, d.startW + dx)));
+          }}
+          onPointerUp={(e) => {
+            const d = dragState.current;
+            dragState.current = null;
+            try {
+              e.currentTarget.releasePointerCapture(e.pointerId);
+            } catch {
+              /* 指针已释放 */
+            }
+            if (d?.moved) suppressClick.current = true;
+          }}
+          onDoubleClick={() => {
+            setWidthPersist(240);
+          }}
+          onKeyDown={(e) => {
+            if (collapsed) return;
+            const step = e.shiftKey ? 60 : 20;
+            if (e.key === 'ArrowLeft') {
+              e.preventDefault();
+              setWidthPersist(Math.max(0, width - step));
+            } else if (e.key === 'ArrowRight') {
+              e.preventDefault();
+              setWidthPersist(Math.min(widthLimit(), width + step));
+            }
           }}
         >
           {collapsed ? '›' : '‹'}
         </button>
-
-        {/* 宽度拖拽手柄：侧栏右缘（收起态隐藏） */}
-        {!collapsed && (
-          <span
-            className="ui-pg__resizer"
-            aria-hidden="true"
-            title="拖拽调整宽度"
-            onPointerDown={(e) => {
-              e.preventDefault();
-              dragRef.current = { startX: e.clientX, startW: width };
-              e.currentTarget.setPointerCapture(e.pointerId);
-            }}
-            onPointerMove={(e) => {
-              const d = dragRef.current;
-              if (!d) return;
-              const w = Math.min(widthLimit(), Math.max(0, d.startW + (e.clientX - d.startX)));
-              setWidth(w);
-              writeJSON(WIDTH_KEY, w);
-            }}
-            onPointerUp={() => {
-              dragRef.current = null;
-            }}
-            onDoubleClick={() => {
-              setWidth(240);
-              writeJSON(WIDTH_KEY, 240);
-            }}
-          />
-        )}
 
         {/* 主区 */}
         <main className="ui-pg__main">

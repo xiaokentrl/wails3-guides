@@ -179,8 +179,9 @@
   background: var(--ui-surface);
   color: var(--ui-text-muted);
   font-size: var(--ui-text-sm);
-  cursor: pointer;
+  cursor: col-resize;
   padding: 0;
+  touch-action: none;
 }
 
 .ui-pg__collapse:hover {
@@ -226,22 +227,11 @@
   font-size: var(--ui-text-sm);
 }
 
-/* ===== 侧栏宽度拖拽手柄 ===== */
+/* 把手：一条把手双语义（点击收起展开 / 拖动调宽） */
 .ui-pg__sidebar {
   position: relative;
 }
 
-.ui-pg__resizer {
-  position: absolute;
-  top: 0;
-  right: -3px;
-  width: 6px;
-  height: 100%;
-  cursor: col-resize;
-  z-index: 2;
+.ui-pg__collapse {
   touch-action: none;
-}
-
-.ui-pg__resizer:hover {
-  background: var(--ui-primary-soft);
 }
