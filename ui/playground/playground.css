@@ -73,10 +73,10 @@
   border: none;
   background: none;
   text-align: left;
-  padding: var(--ui-space-2) var(--ui-space-3);
+  padding: 6px var(--ui-space-3);
   border-radius: var(--ui-radius-sm);
   font-size: var(--ui-text-sm);
-  line-height: 1.5;
+  line-height: 1.45;
   font-family: var(--ui-font);
   color: var(--ui-text-muted);
   cursor: pointer;
@@ -200,6 +200,7 @@
   gap: 4px;
   width: 100%;
   padding: var(--ui-space-2) var(--ui-space-3);
+  padding-top: calc(var(--ui-space-2) + 2px);
   margin-bottom: var(--ui-space-1);
   border: none;
   background: none;
