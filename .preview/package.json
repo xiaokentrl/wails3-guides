@@ -32,7 +32,7 @@
   },
   "scripts": {
     "dev": "vite --port 5183",
-    "build": "vite build --base=./ && vite build --config vite.config.singlefile.mjs && cp dist-single/index.html \"dist/组件导航-单文件版.html\"",
+    "build": "vite build --base=./ && vite build --config vite.config.singlefile.mjs && cp dist-single/index.html dist/standalone.html",
     "build:portable": "vite build --base=./",
     "build:single": "vite build --config vite.config.singlefile.mjs",
     "test": "vitest run",
