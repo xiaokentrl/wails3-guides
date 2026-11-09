@@ -74,6 +74,7 @@ jobs:
 
   deploy:
     needs: build
+    if: github.ref_type == 'branch' # Pages 由 main 推送部署；tag 推送只需产出 Release
     runs-on: ubuntu-latest
     environment:
       name: github-pages
