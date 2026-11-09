@@ -49,6 +49,7 @@ npx vite --port 5183
 |---|---|---|
 | `npx vite --port 5183` | 启动 playground 预览 | `.preview/` |
 | `npm run build` | 打包：**自动产出便携目录版 + 纯静态单文件 HTML**（→ `dist/`） | `.preview/` |
+| `npm run typecheck` / `npm test` | 类型检查 / 测试 | `.preview/` |
 | `npx vitest run` | 运行全部测试（85 用例） | `.preview/` |
 | `npx tsc -p tsconfig.ui.json` | 全库 strict 类型检查 | `.preview/` |
 | `node scripts/check.mjs` | 五项自查（重复导出/DOM 类型遮蔽/demo 导入/CSS 裸色值/id 重复） | `ui/` |
@@ -61,12 +62,16 @@ npx vite --port 5183
 
 ```bash
 cd .preview
-npm run build   # 一条命令双产物：dist/ 便携目录版 + dist/组件导航-单文件版.html
+npm run build   # 一条命令双产物：dist/ 便携目录版 + dist/standalone.html 单文件版
 ```
+
+> [!TIP]
+> **每次 push 到 main，GitHub Actions 自动打包并发布到 GitHub Pages**：
+> https://xiaokentrl.github.io/wails3-guides/ （便携版在线查看；`standalone.html` 同地址可下载）。
 
 | 产物（都在 `dist/`） | 查看方式 |
 |---|---|
-| `组件导航-单文件版.html`（~19MB 全内联） | **直接双击打开**（离线可用，可拷到任意机器） |
+| `standalone.html`（~19MB 全内联） | **直接双击打开**（离线可用，可拷到任意机器） |
 | `index.html` + `assets/`（便携目录版，~2MB gzip） | 任意静态服务器托管（如 `python3 -m http.server 8080`） |
 
 单步构建可用 `npm run build:portable` / `npm run build:single`；构建配置见

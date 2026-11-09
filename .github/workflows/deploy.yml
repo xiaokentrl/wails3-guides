@@ -1,0 +1,81 @@
+name: build & deploy
+
+# 每次 push 到 main：跑全部质量门 → 双产物打包（便携目录版 + 纯静态单文件 HTML）→ 发布到 GitHub Pages。
+# Pages 地址：https://xiaokentrl.github.io/wails3-guides/
+#   /                    = 便携目录版（组件导航 viewer）
+#   /standalone.html     = 单文件版（全内联，可另存离线用）
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  administration: write # configure-pages 的 enablement 需要它（首次运行自动开启 Pages）
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: .preview/package-lock.json
+
+      - name: 安装依赖
+        run: npm ci
+        working-directory: .preview
+
+      - name: 类型检查（strict）
+        run: npm run typecheck
+        working-directory: .preview
+
+      - name: 测试（85 用例）
+        run: npm test
+        working-directory: .preview
+
+      - name: 五项自查
+        run: node scripts/check.mjs
+        working-directory: ui
+
+      - name: 打包（便携目录版 + 单文件版）
+        run: npm run build
+        working-directory: .preview
+
+      - name: 单文件版标准化命名
+        run: mv "dist/组件导航-单文件版.html" dist/standalone.html
+        working-directory: .preview
+
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .preview/dist
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: standalone-html
+          path: .preview/dist/standalone.html
+          retention-days: 14
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
