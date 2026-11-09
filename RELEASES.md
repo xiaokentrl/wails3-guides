@@ -7,6 +7,20 @@
 <a id="english"></a>
 ## English
 
+### v1.4.0 What's Changed from v1.3.0 to v1.4.0
+
+**Version type: Stable**
+
+**Added**
+
+- Add Release Delivery Pipeline guide (专题/分发与更新/发布交付流水线方案.md): 11-step delivery sequence, pre-push hook design, two release-doc formats with full templates, CI version arbitration, acceptance checklist and AI constraint template
+
+**Changed**
+
+- Register the new guide in both READMEs (Chinese catalog + directory tree, English catalog) and the master outline's companion list
+
+---
+
 ### v1.3.0 What's Changed from v1.2.0 to v1.3.0
 
 **Version type: Stable**
@@ -141,6 +155,20 @@
 ## 中文
 
 [English](#english) · 中文
+
+### v1.4.0 相比 v1.3.0 更新内容
+
+**版本类型：稳定版**
+
+**新增**
+
+- 新增发布交付流水线方案（专题/分发与更新/发布交付流水线方案.md）：交付链 11 步操作序列、pre-push 门禁设计、两种发布文档格式（含完整模板）、CI 版本裁决、验收清单与 AI 约束模板
+
+**修改**
+
+- 双 README（中文目录表 + 文件树、英文目录表）与总大纲配套列表同步收录新指南
+
+---
 
 ### v1.3.0 相比 v1.2.0 更新内容
 

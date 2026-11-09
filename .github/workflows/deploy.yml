@@ -97,14 +97,17 @@ jobs:
           cache: npm
           cache-dependency-path: .preview/package-lock.json
 
+      - name: 建立依赖符号链接（ui/ 解析依赖用）
+        run: ln -s .preview/node_modules node_modules
+
       - run: npm ci
         working-directory: .preview
 
       - run: npm run build:single
         working-directory: .preview
 
-      - name: 从 RELEASES.md 提取本版本双语说明
-        run: awk '/^### '"${GITHUB_REF_NAME}"'/{f=1} f&&/^---$/{exit} f' RELEASES.md > body.md
+      - name: 从 RELEASES.md 提取本版本双语说明（英文段 + 中文段，截止到第二个分隔线）
+        run: awk '/^### '"${GITHUB_REF_NAME}"'/{f=1} f&&/^---$/{c++; if (c==2) exit} f' RELEASES.md > body.md
 
       - name: 创建 GitHub Release
         uses: softprops/action-gh-release@v2
