@@ -18,6 +18,6 @@ export default defineConfig({
   esbuild: { jsx: 'automatic' },
   resolve: { dedupe: ['react', 'react-dom'], alias: [...monacoWorkers] },
   plugins: [viteSingleFile({ removeViteModuleLoader: true })],
-  build: { assetsInlineLimit: 100000000, chunkSizeWarningLimit: 100000000 },
+  build: { outDir: 'dist-single', emptyOutDir: true, assetsInlineLimit: 100000000, chunkSizeWarningLimit: 100000000 },
   server: { fs: { allow: ['..'] } },
 });

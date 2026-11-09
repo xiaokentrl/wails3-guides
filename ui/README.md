@@ -45,7 +45,7 @@ npx vite --port 5183
 | 命令 | 作用 | 位置 |
 |---|---|---|
 | `npx vite --port 5183` | 启动 playground 预览 | `.preview/` |
-| `npx vite build` | 构建 playground 静态产物（→ `dist/`） | `.preview/` |
+| `npm run build` | 打包：**自动产出便携目录版 + 纯静态单文件 HTML**（→ `dist/`） | `.preview/` |
 | `npx vitest run` | 运行全部测试（85 用例） | `.preview/` |
 | `npx tsc -p tsconfig.ui.json` | 全库 strict 类型检查 | `.preview/` |
 | `node scripts/check.mjs` | 五项自查（重复导出/DOM 类型遮蔽/demo 导入/CSS 裸色值/id 重复） | `ui/` |
@@ -58,18 +58,16 @@ npx vite --port 5183
 
 ```bash
 cd .preview
-
-# 便携目录版：dist/（index.html + assets，~2MB gzip）——任意静态服务器托管
-npx vite build --base=./
-
-# 单文件版：dist/index.html（~19MB，全部 JS/CSS/monaco worker 内联）——双击即开，可拷到任意机器
-npx vite build --config vite.config.singlefile.mjs
+npm run build   # 一条命令双产物：dist/ 便携目录版 + dist/组件导航-单文件版.html
 ```
 
-| 产物 | 查看方式 |
+| 产物（都在 `dist/`） | 查看方式 |
 |---|---|
-| 单文件版 `dist/index.html` | 直接双击打开（离线可用；19MB 首次解析稍慢） |
-| 便携目录版 `dist/` | 任意静态服务器托管（如 `python3 -m http.server 8080`） |
+| `组件导航-单文件版.html`（~19MB 全内联） | **直接双击打开**（离线可用，可拷到任意机器） |
+| `index.html` + `assets/`（便携目录版，~2MB gzip） | 任意静态服务器托管（如 `python3 -m http.server 8080`） |
+
+单步构建可用 `npm run build:portable` / `npm run build:single`；构建配置见
+`.preview/vite.config.singlefile.mjs`（monaco worker `?worker&inline` 内联别名）。
 
 > [!NOTE]
 > 直接双击打开**目录版**的 index.html 不可行——ES module 脚本受 file:// 跨域限制，必须经服务器；
