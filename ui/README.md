@@ -49,6 +49,32 @@ npx vite --port 5183
 | `npx vitest run` | 运行全部测试（85 用例） | `.preview/` |
 | `npx tsc -p tsconfig.ui.json` | 全库 strict 类型检查 | `.preview/` |
 | `node scripts/check.mjs` | 五项自查（重复导出/DOM 类型遮蔽/demo 导入/CSS 裸色值/id 重复） | `ui/` |
+| `npx vite build --base=./` | 编译**便携目录版**（相对路径 assets） | `.preview/` |
+| `npx vite build --config vite.config.singlefile.mjs` | 编译**单文件版**（全内联，双击即开） | `.preview/` |
+
+## 编译纯静态 HTML（离线查看组件）
+
+两种产物，均无需 Node 环境即可查看：
+
+```bash
+cd .preview
+
+# 便携目录版：dist/（index.html + assets，~2MB gzip）——任意静态服务器托管
+npx vite build --base=./
+
+# 单文件版：dist/index.html（~19MB，全部 JS/CSS/monaco worker 内联）——双击即开，可拷到任意机器
+npx vite build --config vite.config.singlefile.mjs
+```
+
+| 产物 | 查看方式 |
+|---|---|
+| 单文件版 `dist/index.html` | 直接双击打开（离线可用；19MB 首次解析稍慢） |
+| 便携目录版 `dist/` | 任意静态服务器托管（如 `python3 -m http.server 8080`） |
+
+> [!NOTE]
+> 直接双击打开**目录版**的 index.html 不可行——ES module 脚本受 file:// 跨域限制，必须经服务器；
+> 单文件版因全部内联，无此限制。构建配置见 `.preview/vite.config.singlefile.mjs`
+> （含 monaco worker `?worker&inline` 内联别名，与主配置的独立 worker 文件形成对照）。
 
 ## 在你的项目中使用
 
