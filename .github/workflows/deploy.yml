@@ -55,10 +55,6 @@ jobs:
         run: npm run build
         working-directory: .preview
 
-      - name: 单文件版标准化命名
-        run: mv "dist/组件导航-单文件版.html" dist/standalone.html
-        working-directory: .preview
-
       - name: 同步 Release 正文（双语提取 → gh release edit）
         if: github.ref_type == 'branch'
         env:
