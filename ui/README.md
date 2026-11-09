@@ -39,6 +39,9 @@ npx vite --port 5183
 
 > [!NOTE]
 > playground 是开发预览宿主，不是发布物。组件库本体在 `ui/` 源码目录。
+>
+> [!IMPORTANT]
+> vite 只监视 root（`.preview/`）内的文件——**改动 `ui/` 源码后需重启 dev server**（Ctrl+C 后重跑 `npx vite`），否则浏览器拿到的是旧的内存变换缓存。
 
 ## 常用命令速查
 

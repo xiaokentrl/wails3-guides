@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { cn } from '../lib/cn';
 import { NotificationRouter } from '../components/NotificationRouter';
 import { Badge } from '../components/Badge';
@@ -31,10 +31,34 @@ function writeCollapsed(v: boolean) {
   }
 }
 
+const GROUPS_KEY = 'ui-playground-groups-collapsed';
+const WIDTH_KEY = 'ui-playground-sidebar-width';
+
+function readJSON<T>(key: string, fallback: T): T {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw ? (JSON.parse(raw) as T) : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function writeJSON(key: string, v: unknown) {
+  try {
+    localStorage.setItem(key, JSON.stringify(v));
+  } catch {
+    /* 存储不可用：仅会话内记忆 */
+  }
+}
+
 export function PlaygroundApp() {
   const [activeId, setActiveId] = useState<string>(CATEGORIES[0].items[0].id);
   const [query, setQuery] = useState('');
   const [collapsed, setCollapsed] = useState<boolean>(readCollapsed);
+  // 一级菜单（分组）折叠集合 + 侧栏宽度（均可持久化）
+  const [foldedGroups, setFoldedGroups] = useState<Set<string>>(() => new Set(readJSON<string[]>(GROUPS_KEY, [])));
+  const [width, setWidth] = useState<number>(() => Math.min(480, Math.max(160, Number(readJSON<number>(WIDTH_KEY, 240)) || 240)));
+  const dragRef = useRef<{ startX: number; startW: number } | null>(null);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -60,7 +84,10 @@ export function PlaygroundApp() {
     >
       <div className="ui-pg">
         {/* 侧栏 */}
-        <aside className={cn('ui-pg__sidebar', collapsed && 'ui-pg__sidebar--collapsed')}>
+        <aside
+          className={cn('ui-pg__sidebar', collapsed && 'ui-pg__sidebar--collapsed')}
+          style={{ width: collapsed ? undefined : width }}
+        >
           <div className="ui-pg__brand">
             <span className="ui-pg__logo">◆</span>
             <span className="ui-pg__title">组件导航</span>
@@ -70,10 +97,31 @@ export function PlaygroundApp() {
             <TextInput placeholder="搜索组件…" value={query} onChange={(e) => setQuery(e.target.value)} />
           </div>
           <nav className="ui-pg__menu">
-            {filtered.map((cat) => (
+            {filtered.map((cat) => {
+              const folded = foldedGroups.has(cat.id);
+              return (
               <div key={cat.id} className="ui-pg__group">
-                <div className="ui-pg__group-name">{cat.name}</div>
-                {cat.items.map((d) => (
+                <button
+                  type="button"
+                  className="ui-pg__group-name"
+                  aria-expanded={!folded}
+                  onClick={() =>
+                    setFoldedGroups((prev) => {
+                      const next = new Set(prev);
+                      if (next.has(cat.id)) next.delete(cat.id);
+                      else next.add(cat.id);
+                      writeJSON(GROUPS_KEY, [...next]);
+                      return next;
+                    })
+                  }
+                >
+                  <span className="ui-pg__group-chevron" aria-hidden="true">
+                    {folded ? '▸' : '▾'}
+                  </span>
+                  {cat.name}
+                </button>
+                {!folded &&
+                cat.items.map((d) => (
                   <button
                     key={d.id}
                     type="button"
@@ -84,7 +132,8 @@ export function PlaygroundApp() {
                   </button>
                 ))}
               </div>
-            ))}
+              );
+            })}
           </nav>
         </aside>
 
@@ -104,6 +153,30 @@ export function PlaygroundApp() {
         >
           {collapsed ? '›' : '‹'}
         </button>
+
+        {/* 宽度拖拽手柄：侧栏右缘（收起态隐藏） */}
+        {!collapsed && (
+          <span
+            className="ui-pg__resizer"
+            aria-hidden="true"
+            title="拖拽调整宽度"
+            onPointerDown={(e) => {
+              e.preventDefault();
+              dragRef.current = { startX: e.clientX, startW: width };
+              e.currentTarget.setPointerCapture(e.pointerId);
+            }}
+            onPointerMove={(e) => {
+              const d = dragRef.current;
+              if (!d) return;
+              const w = Math.min(480, Math.max(160, d.startW + (e.clientX - d.startX)));
+              setWidth(w);
+              writeJSON(WIDTH_KEY, w);
+            }}
+            onPointerUp={() => {
+              dragRef.current = null;
+            }}
+          />
+        )}
 
         {/* 主区 */}
         <main className="ui-pg__main">
