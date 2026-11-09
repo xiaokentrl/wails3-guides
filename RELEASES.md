@@ -18,8 +18,21 @@
 **Changed**
 
 - Register the new guide in both READMEs (Chinese catalog + directory tree, English catalog) and the master outline's companion list
+- Merge the collapse handle and the resize hot zone into one dual-semantics handle (VS Code pattern): click = collapse/expand, drag = resize (4px threshold), synthetic click after drag suppressed, double-click resets, arrow keys fine-tune
+- Tighten the menu row height to 31px; polish sidebar alignment and group spacing; sticky demo header; constrain demo reading width
+- Standardize the single-file artifact name to standalone.html
+
+**Fixed**
+
+- Fix the collapse handle and the resize hot zone fighting each other (overlapping pointer targets) — resolved by the unified handle
+- Bring docs/EXAMPLES.tsx into type-check scope and fix 3 stale API usages
+
+**Removed**
+
+- Remove the stray CI intermediate file (body.md) from the repository and add it to .gitignore
 
 ---
+
 
 ### v1.3.0 What's Changed from v1.2.0 to v1.3.0
 
@@ -163,12 +176,32 @@
 **新增**
 
 - 新增发布交付流水线方案（专题/分发与更新/发布交付流水线方案.md）：交付链 11 步操作序列、pre-push 门禁设计、两种发布文档格式（含完整模板）、CI 版本裁决、验收清单与 AI 约束模板
+- playground 侧栏支持整体收起/展开：常驻右缘把手，收起状态跨会话记忆（localStorage）
+- 一级菜单（分组标题）支持逐组折叠/展开，带 aria-expanded 状态
+- 侧栏宽度支持右缘自由拖拽（0 至视口上限），双击重置 240px，跨会话记忆
+- 新增单文件 HTML 构建（约 19MB，全部 JS/CSS/monaco worker 内联）：双击即可离线浏览全部组件
+- 新增 npm scripts：dev / build（双产物）/ build:portable / build:single / test / typecheck
+- 每次 main 推送自动同步 GitHub Release 正文（双语说明从 RELEASES.md 提取，经 gh release edit）
 
 **修改**
 
 - 双 README（中文目录表 + 文件树、英文目录表）与总大纲配套列表同步收录新指南
+- 收起把手与拖宽热区合并为一条双语义把手（VS Code 模式）：点击 = 收起展开，拖动 = 调宽（4px 阈值判别），拖后合成 click 抑制，双击重置，方向键微调
+- 菜单行高收紧至 31px，对齐 Element Plus 文档站信息密度
+- 侧栏对齐与分组间距打磨；演示区页头吸顶、阅读宽度约束
+- 单文件产物标准化命名：dist/ 内统一为 standalone.html
+
+**修复**
+
+- 修复收起把手与拖宽热区打架（指针目标重叠）——由一体化把手根治
+- docs/EXAMPLES.tsx 纳入类型检查范围，并修复 3 处旧 API 用法
+
+**删除**
+
+- 移除误入库的 CI 中间文件 body.md，并加入 .gitignore
 
 ---
+
 
 ### v1.3.0 相比 v1.2.0 更新内容
 

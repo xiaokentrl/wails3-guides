@@ -8,3 +8,6 @@ node_modules
 
 # CI 提取中间产物
 body.md
+
+# 单文件构建中间目录
+.preview/dist-single/
