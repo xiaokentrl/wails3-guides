@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -58,6 +58,20 @@ jobs:
       - name: 单文件版标准化命名
         run: mv "dist/组件导航-单文件版.html" dist/standalone.html
         working-directory: .preview
+
+      - name: 同步 Release 正文（双语提取 → gh release edit）
+        if: github.ref_type == 'branch'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION=$(node -p "require('./ui/package.json').version")
+          EN_FROM='^### v'"$VERSION"' What'
+          CN_FROM='^### v'"$VERSION"' 相比'
+          { awk -v from="$EN_FROM" 'BEGIN{f=0} $0 ~ from {f=1} f && /^### v[0-9]/ && $0 !~ from {exit} f' RELEASES.md
+            printf '\n---\n'
+            awk -v from="$CN_FROM" 'BEGIN{f=0} $0 ~ from {f=1} f && /^### v[0-9]/ && $0 !~ from {exit} f' RELEASES.md
+          } > body.md
+          gh release edit "v$VERSION" --notes-file body.md
 
       - uses: actions/configure-pages@v5
         # 首次运行若报 Pages 未启用：仓库 Settings → Pages → Source 选「GitHub Actions」（一次性设置）
