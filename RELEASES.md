@@ -7,6 +7,16 @@
 <a id="english"></a>
 ## English
 
+### v1.6.0 What's Changed from v1.5.0 to v1.6.0
+
+**Version type: Stable**
+
+**Added**
+
+- Add the workflow-runs cleanup workflow (.github/workflows/cleanup-actions.yml): weekly cron (Sundays 00:00 UTC) plus manual dispatch; deletes workflow-run history across all workflows while keeping the latest 10 runs, so gate evidence from recent pushes stays inspectable. Ported from the same workflow in the github-net project, pitfalls documented inline
+
+---
+
 ### v1.5.0 What's Changed from v1.4.0 to v1.5.0
 
 **Version type: Stable**
@@ -184,6 +194,16 @@
 ## 中文
 
 [English](#english) · 中文
+
+### v1.6.0 相比 v1.5.0 更新内容
+
+**版本类型：稳定版**
+
+**新增**
+
+- 新增 Actions 历史运行记录清理工作流（.github/workflows/cleanup-actions.yml）：每周日零点定时 + Actions 页手动触发；清理全仓库所有工作流的运行记录并保留最近 10 条，近期推送的门禁证据仍可复查。自 github-net 项目同名工作流移植，踩坑记录随注释保留
+
+---
 
 ### v1.5.0 相比 v1.4.0 更新内容
 
