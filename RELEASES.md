@@ -7,6 +7,22 @@
 <a id="english"></a>
 ## English
 
+### v1.5.0 What's Changed from v1.4.0 to v1.5.0
+
+**Version type: Stable**
+
+**Added**
+
+- Add the Tray Restore Position evidence review (专题/桌面集成/托盘唤回位置_实证复盘.md): a real "fixed twice, never took effect" post-mortem with framework-source evidence — four-gesture protocol/callback mapping, four independent failure chains, proposed fix order, acceptance record template and reusable read-only probes
+- Expand the Tray & Desktop Identity guide: three-layer gesture mapping, callback registration ownership (one entry, one owner), framework timing contracts (who positions last), geometry write-side guards, fix-verification loop (five evidence layers, three automated gates), expanded root-cause table and AI constraint template
+
+**Changed**
+
+- Register the evidence review in both READMEs (Chinese/English catalogs + Chinese directory tree) and the master outline's companion list
+- De-duplicate the Tray & Desktop Identity guide: version-bound sample tables (gesture mapping, timing contract, callback registry, all-zero persistence) now live once in the evidence review as the single source; the guide keeps the generic disciplines with pointers and carries no framework line numbers to maintain
+
+---
+
 ### v1.4.0 What's Changed from v1.3.0 to v1.4.0
 
 **Version type: Stable**
@@ -168,6 +184,22 @@
 ## 中文
 
 [English](#english) · 中文
+
+### v1.5.0 相比 v1.4.0 更新内容
+
+**版本类型：稳定版**
+
+**新增**
+
+- 新增《托盘唤回位置 实证复盘》（专题/桌面集成/托盘唤回位置_实证复盘.md）：一次「修了两次都没生效」的实证复盘，带框架源码证据——四类手势的协议/回调映射、四条独立失效链、修复顺序建议、验收记录模板与可复用只读排查命令
+- 扩充《托盘技术方案》：手势三层映射、回调注册唯一性（一个入口一个主人）、框架调用时序契约（谁最后摆位）、几何写入侧纪律、修复生效验证闭环（五层验证、三道自动化门）、扩充根因表与 AI 实施约束模板
+
+**修改**
+
+- 双 README（中文/英文目录清单 + 中文文件树）与主大纲配套列表收录实证复盘条目
+- 《托盘技术方案》去重：版本绑定的样例表（手势映射、时序契约、回调注册清单、全零落盘）收敛到实证复盘单一来源，方案保留通用纪律与指针，不再随框架版本维护行号
+
+---
 
 ### v1.4.0 相比 v1.3.0 更新内容
 
