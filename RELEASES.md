@@ -7,6 +7,24 @@
 <a id="english"></a>
 ## English
 
+### v1.10.0 What's Changed from v1.9.0 to v1.10.0
+
+**Version type: Stable**
+
+**Added**
+
+- Add a mandatory pre-install directory-tree preview gate: the tree is derived live from the contract and user choices (two roots — program + data; per-node purpose icons; program internals collapsed to counts), and "Next" stays disabled until the tree is rendered and confirmed
+- Allow free relocation of any directory node during the wizard (including other drives); the subtree re-renders live, adjustments land in a change list applied at once
+- Mark conflicts inline (target exists / no write permission / illegal path): node turns red and Next is disabled until fixed
+- Zero Windows registry writes by default: in-app uninstaller + manifest-driven reverse execution replaces the uninstall key; startup-folder .lnk replaces the Run key; os.Executable() + config/install.json replaces InstallPath; file association (registry-only) stays the single opt-in exception
+
+**Changed**
+
+- The confirmed preview tree becomes the blueprint for install manifest — what you see = what you confirmed = what gets written
+- Update the AI constraint template and test matrix with the preview-gate and zero-registry rows
+
+---
+
 ### v1.9.0 What's Changed from v1.8.0 to v1.9.0
 
 **Version type: Stable**
@@ -235,6 +253,24 @@
 ## 中文
 
 [English](#english) · 中文
+
+### v1.10.0 相比 v1.9.0 更新内容
+
+**版本类型：稳定版**
+
+**新增**
+
+- 新增安装前目录结构图强制预览门禁：树由契约与用户选择实时推导（程序区 + 数据区双根；节点带用途图标；程序内部折叠为计数），树渲染并确认前「下一步」禁用
+- 向导过程中任意目录节点可改位置（含其他盘），子树实时刷新，调整进变更列表一次生效
+- 冲突即时标红（目标已有文件 / 无写权限 / 非法路径）：节点标红 + 下一步禁用，修正后恢复
+- Windows 默认注册表零写入：应用内卸载器 + manifest 反向执行替代卸载键；启动目录 .lnk 替代 Run 键；os.Executable() + config/install.json 替代 InstallPath；文件关联（仅注册表可实现）为唯一显式同意例外
+
+**修改**
+
+- 确认后的预览树即安装 manifest 蓝本——所见 = 所确认 = 所写四者一致
+- AI 约束模板与测试矩阵同步补预览门禁与零注册表行
+
+---
 
 ### v1.9.0 相比 v1.8.0 更新内容
 
