@@ -17,7 +17,11 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  # 按 ref 类型隔离：标签（发版）运行不得取消 main 的 Pages 部署，反之亦然。
+  # 同一 main 连续推送仍互相取消（只有最新一次需要部署）。group 不能写死 'pages'：
+  # 2026-11-10 v1.6.0 发版时，标签运行抢占了 main 推送的 deploy，部署卡在
+  # deployment_queued 后被整体取消（run #33）。
+  group: pages-${{ github.ref_type }}
   cancel-in-progress: true
 
 jobs:
@@ -61,6 +65,13 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           VERSION=$(node -p "require('./ui/package.json').version")
+          # 定版提交先于标签推送进入 main，此时本版本的 Release 还没由标签流水线创建。
+          # 2026-11-10 v1.6.0 起改为：Release 不存在就跳过（标签流水线创建 Release 时的
+          # body_path 已带本版正文），不得让本步骤报红连累 Pages 部署。
+          if ! gh release view "v$VERSION" --json tagName --jq .tagName >/dev/null 2>&1; then
+            echo "Release v$VERSION 尚未创建（等待标签流水线），跳过正文同步"
+            exit 0
+          fi
           EN_FROM='^### v'"$VERSION"' What'
           CN_FROM='^### v'"$VERSION"' 相比'
           { awk -v from="$EN_FROM" 'BEGIN{f=0} $0 ~ from {f=1} f && /^### v[0-9]/ && $0 !~ from {exit} f' RELEASES.md
