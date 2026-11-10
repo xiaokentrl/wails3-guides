@@ -7,6 +7,29 @@
 <a id="english"></a>
 ## English
 
+### v1.12.0 What's Changed from v1.11.0 to v1.12.0
+
+**Version type: Stable**
+
+**Added**
+
+- Add the dev/installed dual-mode path resolution section to the install-directory guide: dev mode uses relative paths (./dev-data with config/data/cache/logs in one root — delete the project directory for a complete cleanup), installed mode uses contract absolute paths; mode determination single-sourced in paths.Resolve
+- Link the online component viewer from both repository READMEs (top of English + 中文): https://xiaokentrl.github.io/wails3-guides/
+
+**Changed**
+
+- （无 / none）
+
+**Fixed**
+
+- Fix the Linux installer manifest picking up the source machine's absolute paths (the source root itself leaked in as a "relative" path) — the source root is now skipped, directories are rebuilt via mkdir and stay out of the manifest
+
+**Removed**
+
+- （无 / none）
+
+---
+
 ### v1.11.0 What's Changed from v1.10.0 to v1.11.0
 
 **Version type: Stable**
@@ -282,6 +305,29 @@
 ## 中文
 
 [English](#english) · 中文
+
+### v1.12.0 相比 v1.11.0 更新内容
+
+**版本类型：稳定版**
+
+**新增**
+
+- 《默认安装目录规划方案》新增开发期/安装期双模式路径解析：开发模式使用相对路径（./dev-data 四区同根——删项目目录即完全清理），安装模式走契约绝对路径；模式判定单源在 paths.Resolve
+- 仓库双 README（EN + 中文）顶部挂组件库在线查看地址：https://xiaokentrl.github.io/wails3-guides/
+
+**修改**
+
+- （无 / none）
+
+**修复**
+
+- 修复 Linux 安装器 manifest 混入源机绝对路径（源根目录自身被当成相对路径）——源根跳过，目录经 mkdir 重建不入清单
+
+**删除**
+
+- （无 / none）
+
+---
 
 ### v1.11.0 相比 v1.10.0 更新内容
 
