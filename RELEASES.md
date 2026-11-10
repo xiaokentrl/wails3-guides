@@ -7,6 +7,35 @@
 <a id="english"></a>
 ## English
 
+### v1.11.0 What's Changed from v1.10.0 to v1.11.0
+
+**Version type: Stable**
+
+**Added**
+
+- Add three-platform installer/packaging scripts (packaging/): Windows NSIS (compile-verified on NSIS 3.10; resolution chain, preview-gate page, registry zero-write, manifest recursive enumeration, unified uninstaller), macOS DMG, Linux install.sh (manifest-driven install/uninstall, XDG roots) and AppImage
+- Add check ⑥ to ui/scripts/check.mjs: every go/ts/tsx code fence in the guides must parse (gofmt / esbuild), with inline-elision handling
+- Add the Wails3 Version Discipline guide (专题/桌面集成/Wails3框架版本判别与服务纪律方案.md): v2/v3 discrimination table, version-mixing red flags, Services lifecycle and mutex discipline, alpha pinning, WAILS_MCP=1
+- Sync the GitHub Release body automatically on every push to main (bilingual notes extracted from RELEASES.md via gh release edit)
+- Add claims-backed tests naming the doc sections they endorse (BOM, CSV escaping)
+
+**Changed**
+
+- Tighten the playground menu row height to 31px; polish sidebar alignment and group spacing; sticky demo header; constrain demo reading width
+- Standardize the single-file artifact name to standalone.html (local build now matches CI)
+
+**Fixed**
+
+- Fix three check-⑥ self-bugs (double-scanned 分发与更新, gofmt stdin form, esbuild loader flag form)
+- Fix one gap in the Wails3 guide found by claims cross-verification (frontend bindings generation)
+- Fix 24 missing component cards in docs/COMPONENTS.md and 3 stale counts in the delivery manifest / ui/README
+
+**Removed**
+
+- Remove the stray CI intermediate file (body.md) from the repository
+
+---
+
 ### v1.10.0 What's Changed from v1.9.0 to v1.10.0
 
 **Version type: Stable**
@@ -253,6 +282,35 @@
 ## 中文
 
 [English](#english) · 中文
+
+### v1.11.0 相比 v1.10.0 更新内容
+
+**版本类型：稳定版**
+
+**新增**
+
+- 三平台安装器/打包脚本落地（packaging/）：Windows NSIS（NSIS 3.10 编译验证；解析链、预览门禁页、注册表零写入、manifest 递归枚举、一体化卸载器）、macOS DMG、Linux install.sh（manifest 驱动安装/卸载、XDG 数据根）与 AppImage
+- ui/scripts/check.mjs 新增第 ⑥ 项检查：指南中全部 go/ts/tsx 代码块必须可解析（gofmt / esbuild），含行内省略处理
+- 新增《Wails3框架版本判别与服务纪律方案》（专题/桌面集成）：v2/v3 判别表、版本混用红旗、Services 生命周期与并发锁纪律、alpha 钉版、WAILS_MCP=1
+- 每次 main 推送自动同步 GitHub Release 正文（双语说明从 RELEASES.md 提取，经 gh release edit）
+- 新增 claims 背书测试：每个测试命名所背书的文档章节（BOM、CSV 转义不变式）
+
+**修改**
+
+- playground 菜单行高收紧至 31px；侧栏对齐与分组间距打磨；演示区页头吸顶、阅读宽度约束
+- 单文件产物标准化命名：standalone.html（本地构建与 CI 对齐）
+
+**修复**
+
+- 修复检查 ⑥ 自身三处 bug（分发与更新双重扫描、gofmt stdin 形式、esbuild loader 参数形式）
+- 修复 Wails3 方案经 claims 交叉核验发现的 1 处缺口（前端绑定生成方式）
+- 修复 docs/COMPONENTS.md 缺失的 24 个组件卡与交付清单/ui/README 的 3 处陈旧数字
+
+**删除**
+
+- 移除误入库的 CI 中间文件 body.md
+
+---
 
 ### v1.10.0 相比 v1.9.0 更新内容
 
