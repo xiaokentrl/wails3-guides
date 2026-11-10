@@ -181,6 +181,7 @@ console.log('\n[6] 指南代码块可解析（go/ts/tsx）');
       idx++;
       const lang = m[1] === 'typescript' ? 'ts' : m[1];
       const raw = m[2]
+        .replace(/\{\s*(\.\.\.|…)\s*\}/g, '{ }') // 单行 { ... } 省略函数体
         .split('\n')
         .filter((line) => !/^\s*(\.\.\.|…|\/\/ \.\.\.)\s*$/.test(line))
         .join('\n');
