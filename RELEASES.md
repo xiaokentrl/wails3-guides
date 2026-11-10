@@ -7,6 +7,28 @@
 <a id="english"></a>
 ## English
 
+### v1.13.0 What's Changed from v1.12.0 to v1.13.0
+
+**Version type: Stable**
+
+**Added**
+
+- Add the Single Instance & Fast Startup guide (专题/桌面集成/单实例与快速启动方案.md): single instance by default (second-launch args routed to the running instance, tray recall integration), four-milestone startup budget (process → window ≤500ms, first frame ≤1s, interactive ≤2s), UI responsiveness floor (≥100ms operations need visible feedback, no main-thread blocking); registered in both READMEs and the master outline
+
+**Changed**
+
+- （无 / none）
+
+**Fixed**
+
+- （无 / none）
+
+**Removed**
+
+- （无 / none）
+
+---
+
 ### v1.12.0 What's Changed from v1.11.0 to v1.12.0
 
 **Version type: Stable**
@@ -305,6 +327,28 @@
 ## 中文
 
 [English](#english) · 中文
+
+### v1.13.0 相比 v1.12.0 更新内容
+
+**版本类型：稳定版**
+
+**新增**
+
+- 新增《单实例与快速启动方案》（专题/桌面集成/单实例与快速启动方案.md）：单实例默认（二次启动参数路由到运行实例、托盘唤回联动）、启动四里程碑预算（进程→窗口 ≤500ms、首帧 ≤1s、可交互 ≤2s）、UI 响应下限（≥100ms 操作须有可见回执、主线程禁阻塞）；双语 README 与总大纲已登记
+
+**修改**
+
+- （无 / none）
+
+**修复**
+
+- （无 / none）
+
+**删除**
+
+- （无 / none）
+
+---
 
 ### v1.12.0 相比 v1.11.0 更新内容
 
