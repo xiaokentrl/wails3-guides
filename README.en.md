@@ -1,5 +1,7 @@
 # Desktop App Project Kickoff Guide Library
 
+> **View the component library online**: **https://xiaokentrl.github.io/wails3-guides/** — 118 live interactive demos, auto-updated on every commit
+>
 > **Appendix: [ui/ component library](./ui/README.md)** — 108 components + 7 integrations; see its README for preview, tests, and usage.
 
 **English** · [中文](./README.md)

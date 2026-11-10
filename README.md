@@ -1,5 +1,7 @@
 # 桌面应用立项专题指南库
 
+> **在线查看组件库**：**https://xiaokentrl.github.io/wails3-guides/** —— 118 个实时交互演示，每次提交自动更新
+>
 > **附：[ui/ 前端公共组件库](./ui/README.md)** —— 108 组件 + 7 集成封装，启动预览 / 测试 / 使用方式见其 README。
 
 [English](./README.en.md) · **中文**
