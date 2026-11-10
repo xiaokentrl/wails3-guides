@@ -9,11 +9,15 @@
  *   5. registry 演示 id 重复
  * 退出码非 0 = 有 error 级问题。
  */
-import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { readFileSync, readdirSync, statSync, mkdtempSync, rmSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { execFileSync } from 'node:child_process';
+import { tmpdir } from 'node:os';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
+const repoRoot = dirname(root); // guides/（专题指南在 ui 之外）
+const esbuildBin = join(repoRoot, '.preview', 'node_modules', '.bin', 'esbuild');
 let errors = 0;
 let warnings = 0;
 const fail = (msg) => { console.error('  ✗ ' + msg); errors++; };
@@ -141,6 +145,84 @@ console.log('\n[5] registry 演示 id 重复');
   const dup = ids.filter((id, i) => ids.indexOf(id) !== i);
   if (dup.length) fail(`重复 id：${[...new Set(dup)].join(', ')}`);
   else ok(`共 ${ids.length} 个演示 id，无重复`);
+}
+
+/* 6. 指南代码块可解析（go/ts/tsx——借鉴 spf13/go-skills check_skill_code.py：
+   文档里的代码必须能过编译器/解析器，伪代码行（仅 … 或 ...）剥离后按文件/语句两种包裹尝试） */
+console.log('\n[6] 指南代码块可解析（go/ts/tsx）');
+{
+  const guideDirs = ['专题', '分发与更新'];
+  const mdFiles = [];
+  const walkMd = (dir) => {
+    if (!statSync(dir).isDirectory()) return;
+    for (const name of readdirSync(dir)) {
+      const p = join(dir, name);
+      if (statSync(p).isDirectory()) walkMd(p, mdFiles);
+      else if (name.endsWith('.md')) mdFiles.push(p);
+    }
+  };
+  for (const d of guideDirs) {
+    const abs = join(repoRoot, d);
+    try { walkMd(abs); } catch { /* 目录不存在跳过 */ }
+  }
+  const outline = join(repoRoot, 'Wails3桌面项目立项总大纲.md');
+  try { if (statSync(outline).isFile()) mdFiles.push(outline); } catch { /* 可选 */ }
+
+  let fences = 0;
+  let bad = 0;
+  const tmp = mkdtempSync(join(tmpdir(), 'guide-check-'));
+  for (const f of mdFiles) {
+    const src = readFileSync(f, 'utf8');
+    const rel = f.slice(repoRoot.length + 1);
+    const re = /```(go|ts|tsx|typescript)\n([\s\S]*?)```/g;
+    let m;
+    let idx = 0;
+    while ((m = re.exec(src)) !== null) {
+      idx++;
+      const lang = m[1] === 'typescript' ? 'ts' : m[1];
+      const raw = m[2]
+        .split('\n')
+        .filter((line) => !/^\s*(\.\.\.|…|\/\/ \.\.\.)\s*$/.test(line))
+        .join('\n');
+      if (!raw.trim()) continue;
+      fences++;
+      const file = join(tmp, `${lang}-${idx}-${f.replace(/[^\w]/g, '_')}.${lang === 'go' ? 'go' : lang === 'tsx' ? 'tsx' : 'ts'}`);
+      let body = raw;
+      if (lang === 'go') {
+        // 片段宽容：原样 → 带包 → 带包带函数 三种包裹任一可解析即过
+        const variants = [
+          raw, // 已含 package 头的完整块
+          `package main\n${raw}`, // 仅声明/语句片段
+          `package main\nfunc _() {\n${raw}\n}`, // 语句片段
+        ];
+        let ok = false;
+        let lastErr = '';
+        for (const v of variants) {
+          try {
+            execFileSync('gofmt', ['-e'], { input: v, stdio: ['pipe', 'ignore', 'pipe'] });
+            ok = true;
+            break;
+          } catch (e) {
+            lastErr = String(e.message).split('\n')[0];
+          }
+        }
+        if (!ok) {
+          fail(`${rel} 代码块 #${idx}（go）无法解析：${lastErr}`);
+          bad++;
+        }
+        continue;
+      }
+      // ts/tsx：esbuild transform（stdin，loader 按块语言）
+      try {
+        execFileSync(esbuildBin, [`--loader=${lang}`, '--log-level=error'], { input: raw, stdio: ['pipe', 'ignore', 'pipe'] });
+      } catch (e) {
+        fail(`${rel} 代码块 #${idx}（${lang}）无法解析：${String(e.message).split('\n')[0]}`);
+        bad++;
+      }
+    }
+  }
+  rmSync(tmp, { recursive: true, force: true });
+  if (!bad) ok(`共 ${fences} 个 go/ts/tsx 代码块，全部可解析`);
 }
 
 console.log(`\n==== 结果：${errors} error / ${warnings} warning ====`);
