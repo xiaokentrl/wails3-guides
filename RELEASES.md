@@ -7,6 +7,17 @@
 <a id="english"></a>
 ## English
 
+### v1.7.0 What's Changed from v1.6.0 to v1.7.0
+
+**Version type: Stable**
+
+**Fixed**
+
+- Fix the deploy workflow's fixed concurrency group ("pages") letting a tag (release) run cancel an in-flight main Pages deployment, which ended in "deployment_queued → canceled" (run #33 during the v1.6.0 release): the group is now scoped per ref type (pages-branch / pages-tag), while successive main pushes still supersede each other
+- Fix the release-notes sync step failing on main pushes that land the version bump before the tag pipeline creates the Release (which took the build job red and skipped Pages deployment): the step now skips with a notice when the version's Release does not exist yet
+
+---
+
 ### v1.6.0 What's Changed from v1.5.0 to v1.6.0
 
 **Version type: Stable**
@@ -194,6 +205,17 @@
 ## 中文
 
 [English](#english) · 中文
+
+### v1.7.0 相比 v1.6.0 更新内容
+
+**版本类型：稳定版**
+
+**修复**
+
+- 修复部署工作流的并发锁写死为 "pages"，导致标签（发版）运行取消正在执行的 main Pages 部署，表现为 deployment_queued 后被整体取消（v1.6.0 发版时的 run #33）：并发组改为按 ref 类型隔离（pages-branch / pages-tag），同一 main 连续推送仍互相淘汰
+- 修复定版提交先于标签推送进入 main 时，「同步 Release 正文」步骤因 Release 尚未创建而报红、连累 build 失败并跳过 Pages 部署的问题：该步骤现改为 Release 不存在时跳过并留提示
+
+---
 
 ### v1.6.0 相比 v1.5.0 更新内容
 
