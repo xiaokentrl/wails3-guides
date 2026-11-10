@@ -7,6 +7,17 @@
 <a id="english"></a>
 ## English
 
+### v1.8.0 What's Changed from v1.7.0 to v1.8.0
+
+**Version type: Stable**
+
+**Fixed**
+
+- Fix the standalone-html CI artifact being empty since it was introduced: npm run build produced dist/ (portable) and dist-single/index.html (single-file) but never copied the single file into dist/, so the build job's "No files were found" upload was always empty. build now chains build:portable + build:single + copy:single (explicit error when dist-single/index.html is missing); build:pages aliases to build, removing its trap of copying a stale dist-single from a previous run
+- Bump actions/checkout and actions/setup-node to @v5 in both jobs, clearing the Node.js 20 deprecation warnings for those two actions (the remaining warnings are upstream actions without a Node 24 major yet)
+
+---
+
 ### v1.7.0 What's Changed from v1.6.0 to v1.7.0
 
 **Version type: Stable**
@@ -205,6 +216,17 @@
 ## 中文
 
 [English](#english) · 中文
+
+### v1.8.0 相比 v1.7.0 更新内容
+
+**版本类型：稳定版**
+
+**修复**
+
+- 修复 standalone-html CI 产物自引入以来一直为空：npm run build 只产出 dist/（便携版）与 dist-single/index.html（单文件版），从未把单文件拷入 dist/，build job 的上传步骤始终报「No files were found」并得到空产物。现 build 串为 build:portable + build:single + copy:single（dist-single/index.html 缺失时明确报错）；build:pages 别名到 build，消除其「拷贝上一次残留 dist-single」的陷阱
+- 两个 job 的 actions/checkout 与 actions/setup-node 升至 @v5，消除这两个 action 的 Node.js 20 弃用告警（其余告警系上游 action 尚无 Node 24 大版本，无实际影响）
+
+---
 
 ### v1.7.0 相比 v1.6.0 更新内容
 
