@@ -64,6 +64,7 @@ func (s *NoteService) Save(n Note) error { ... } // JS 可调用
 5. **前端是不可信输入**：绑定方法的参数校验等同 HTTP handler；绝不从前端字符串拼 shell 命令或文件路径；
 6. **机密只留在 Go 侧**：打进 `frontend/dist` 的任何内容用户都可读；
 7. 事件：`app.Event.Emit` / `app.Event.On`；可取消钩子：`window.RegisterHook(events.Common.WindowClosing, ...)`——「关闭前确认」标准模式。
+8. **前端绑定生成**：`wails3 generate bindings`（`wails3 dev` 自动执行）——前端从 `frontend/bindings/<go-import-path>/<service>` 导入，**不是 v2 的 `wailsjs/`**；生成物勿手改（每次 dev/build 重新生成）。
 
 ## 构建系统与 alpha 纪律
 

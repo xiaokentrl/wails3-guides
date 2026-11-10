@@ -151,7 +151,7 @@ console.log('\n[5] registry 演示 id 重复');
    文档里的代码必须能过编译器/解析器，伪代码行（仅 … 或 ...）剥离后按文件/语句两种包裹尝试） */
 console.log('\n[6] 指南代码块可解析（go/ts/tsx）');
 {
-  const guideDirs = ['专题', '分发与更新'];
+  const guideDirs = ['专题']; // 递归含子目录（分发与更新等）；'分发与更新' 不能单列——专题 递归已覆盖，单列会双重扫描
   const mdFiles = [];
   const walkMd = (dir) => {
     if (!statSync(dir).isDirectory()) return;
@@ -165,8 +165,7 @@ console.log('\n[6] 指南代码块可解析（go/ts/tsx）');
     const abs = join(repoRoot, d);
     try { walkMd(abs); } catch { /* 目录不存在跳过 */ }
   }
-  const outline = join(repoRoot, 'Wails3桌面项目立项总大纲.md');
-  try { if (statSync(outline).isFile()) mdFiles.push(outline); } catch { /* 可选 */ }
+  mdFiles.push(join(repoRoot, 'Wails3桌面项目立项总大纲.md'));
 
   let fences = 0;
   let bad = 0;
