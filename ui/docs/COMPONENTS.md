@@ -409,3 +409,79 @@
 - **点击 → 统一唤回**：系统通知点击 → `routeNotificationClick(tag)` → focusWindow + 调用方跳转（桥接层接线）
 - **权限**：unknown → 请求一次 → granted/denied 缓存；denied 永远走 Toast
 - **边界**：tag 替换支持度待验证（→ 系统能力方案）；服务器推送管线由同步层信号驱动本服务，不在组件内实现
+
+### Popconfirm（气泡确认）
+- **API**：`placement? / 确认/取消文案`；`PopconfirmTrigger` 为触发器变体
+- **无障碍**：气泡 `role=dialog`；Esc 关闭；确认动作显式文案（→《操作反馈方案》按钮写结果）
+
+### CommandHint
+- **API**：纯展示组件（命令面板右对齐提示，→ CommandPalette demo）
+
+### Affix（固钉）
+- **API**：`offsetTop? / offsetBottom?`；滚动吸顶/吸底
+
+### Anchor（锚点导航）
+- **API**：`items: {id, label, children?}[]`、`activeId?`、`onClick?`；scroll spy 由调用方接线（→ ScrollSpy）
+
+### Banner（横幅）
+- **API**：`tone? / closable?`；页面级通知，层级高于 Toast 低于 Modal（→《操作反馈方案》）
+
+### Carousel（走马灯）
+- **API**：`autoplay? / showDots? / showArrows?`；键盘 ←→ 切换
+
+### ColorPicker（颜色选择器）
+- **API**：`value / onChange / swatches? / showHexInput?`；预设色板 + 原生 color input
+
+### FloatButton（悬浮按钮）
+- **API**：`icon / actions?`（展开动作组）；固定定位由调用方控制
+
+### Mentions（提及）
+- **API**：`value / onChange / users?`；@触发下拉；IME 组合态不拦截
+
+### PageHeader（页头）
+- **API**：`title / onBack? / extra?`；返回语义由调用方实现（路由回退）
+
+### ScrollSpy（滚动监听）
+- **API**：`items / offset?`；IntersectionObserver 高亮当前节（→ Anchor 联动）
+
+### Watermark（水印）
+- **API**：`text / opacity? / rotate?`；Canvas 覆盖层，防删除（MutationObserver 待验证）
+
+### DateTimePicker（日期时间组合）
+- **API**：`value / onChange`；日期 + 时间两段输入组合（→ DatePicker/TimePicker 单体）
+
+### ImageGroup（图片组）
+- **API**：聚合 `Image` 共享预览上下文（点击进入 Lightbox 联动）
+
+### InfiniteScroll（滚动加载）
+- **API**：`onLoadMore / hasMore? / threshold?`；根节点滚动或窗口滚动
+
+### InputGroup（输入组合）
+- **API**：前缀/后缀聚合多个输入（→ 表单布局）
+
+### SkeletonShape（骨架形状）
+- **API**：`variant?: 'text'|'rect'|'circle'`、`width? / height?`；动画走令牌尊重减少动效
+
+### SliderRange（双滑块范围）
+- **API**：`value: [min,max] / onChange`；双柄不交叉钳制
+
+### StatusDot（状态点）
+- **API**：`tone? / label?`；label 读屏可达（颜色不是唯一通道）
+
+### ThemeProvider（主题）
+- **API**：`defaultTheme?: 'light'|'dark'|'system'`；`data-theme` 根属性 + `useTheme()`
+
+### MessageBox（Promise 确认框）
+- **API**：`MessageBoxProvider` + `useMessageBox().confirm()`——Promise 语义替代回调地狱；`MessageBoxProvider` 为根级 Provider
+
+### NotificationCard / NotificationArea
+- **API**：`NotificationCard`（单条，`tone/title/body/actions?`）；`NotificationArea`（堆叠容器）——与 NotificationRouter（路由+降级）分工见组件卡 NotificationRouter
+
+### CheckableTag（可勾选标签）
+- **API**：`checked / onChange`；`aria-pressed`；筛选芯片场景（→《默认安装目录规划方案》claims 背书测试）
+
+### BadgeRibbon（缎带徽章）
+- **API**：`text / color? / placement?`；包内容器右上角缎带
+
+### CardMeta（卡片内容区）
+- **API**：`cover? / title? / description? / actions?`；与 Card 组合（cover 图 + 标题描述 + 动作条）
