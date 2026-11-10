@@ -7,6 +7,25 @@
 <a id="english"></a>
 ## English
 
+### v1.9.0 What's Changed from v1.8.0 to v1.9.0
+
+**Version type: Stable**
+
+**Added**
+
+- Add the Default Install Directory guide (专题/分发与更新/默认安装目录规划方案.md): a directory contract mapping six file classes to one home each across three platforms — Linux FHS/XDG, Windows resolution chain + registry (D:\ first with fallbacks), macOS Library family — with a single-source paths.go module, minimal-write registry whitelist, install manifest ("what was written is recorded"), uninstall hygiene and a 12-touchpoint supplement
+- Make the playground sidebar width freely drag-adjustable to any width (0 up to the viewport limit), double-click reset to 240px, persisted across sessions
+
+**Changed**
+
+- Contract updated to single-root four-zone + external cache: config/data/logs share one root (backup, uninstall and troubleshooting look at one directory), while the cache alone stays in the platform location (OS cleanup tools only recognize it there); the legacy four-way split is kept as a fallback for distro-repository packaging
+
+**Fixed**
+
+- （无 / none）
+
+---
+
 ### v1.8.0 What's Changed from v1.7.0 to v1.8.0
 
 **Version type: Stable**
@@ -216,6 +235,25 @@
 ## 中文
 
 [English](#english) · 中文
+
+### v1.9.0 相比 v1.8.0 更新内容
+
+**版本类型：稳定版**
+
+**新增**
+
+- 新增《默认安装目录规划方案》（专题/分发与更新/默认安装目录规划方案.md）：目录契约——六类文件 × 三平台各归其所（Linux FHS/XDG、Windows 解析链 + 注册表（D:\ 优先带回退）、macOS Library 家族），paths.go 单源模块、注册表最小化白名单、安装清单「所写即所录」、卸载净空与 12 触点补充清单
+- playground 侧栏宽度放开为任意拖拽（0 至视口上限），双击重置 240px，跨会话记忆
+
+**修改**
+
+- 目录契约改为单根四区 + 缓存外置：用户数据/配置/日志同根（备份、卸载、排障只看一个目录），缓存单独保持平台位置（OS 清理工具只认那里）；旧四分契约保留为进官方仓库打包时的备选档
+
+**修复**
+
+- （无 / none）
+
+---
 
 ### v1.8.0 相比 v1.7.0 更新内容
 
