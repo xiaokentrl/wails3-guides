@@ -65,18 +65,19 @@ fi
 # ===== 安装 =====
 mkdir -p "$INSTALL_DIR" "$DATA_ROOT"/{config,data,logs} "$CACHE_DIR" "$HOME/.local/bin"
 
-# 复制产物 + 所写即所录（manifest 逐文件记录）
+# 复制产物 + 所写即所录（manifest 逐文件记录；目录经 mkdir 重建，不入清单）
 : > "$MANIFEST"
+find "$SRC" -type d | while read -r d; do
+  rel="${d#"$SRC"/}"
+  [ -z "$rel" ] && continue # 源根自身：安装根即落点，跳过（否则 manifest 混入源机绝对路径）
+  mkdir -p "$INSTALL_DIR/$rel"
+done
 find "$SRC" -type f | while read -r f; do
   rel="${f#"$SRC"/}"
   dest="$INSTALL_DIR/$rel"
   mkdir -p "$(dirname "$dest")"
   cp "$f" "$dest"
   echo "$dest" >> "$MANIFEST"
-done
-find "$SRC" -type d | while read -r d; do
-  rel="${d#"$SRC"/}"
-  [ -n "$rel" ] && echo "$INSTALL_DIR/$rel/" >> "$MANIFEST"
 done
 
 # 可执行权限
