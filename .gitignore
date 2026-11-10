@@ -11,3 +11,6 @@ body.md
 
 # 单文件构建中间目录
 .preview/dist-single/
+
+# NSIS 本地验证用 deb
+packaging/windows/*.deb
