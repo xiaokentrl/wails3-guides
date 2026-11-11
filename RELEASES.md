@@ -7,6 +7,31 @@
 <a id="english"></a>
 ## English
 
+### v1.15.0 What's Changed from v1.14.0 to v1.15.0
+
+**Version type: Stable**
+
+**Added**
+
+- Add the Go Testing & Filesystem Patterns guide (专题/质量与诊断/Go测试与文件系统模式方案.md): filesystem-injection selection table (read-only `fs.FS`, read-write `afero.Fs`, untrusted names `*os.Root`), the inject-the-Fs pattern (the constructor is the seam, `main` picks the implementation), the four MemMapFs differences with on-disk contract tests (`afero.NewBasePathFs(afero.NewOsFs(), t.TempDir())` — an in-memory green test proves logic, not filesystem contract), BasePathFs is not a security boundary (symlinks escape it — use `os.Root`), unit-test discipline (table-driven, `t.Helper()`, hand-written fakes over mock frameworks, golden files in `testdata/`, `cmp` over DeepEqual), error-handling rules (errors are values, wrap with `%w` for context, `errors.Join` for batch failures), and a version-gating rule (check the go.mod floor before recommending gated features)
+- Add the Write-Less Necessity Ladder (7 rungs: need it? → already in the codebase? → stdlib? → platform? → already in go.mod? → one line? → minimal implementation) with the never-cut list, named ceilings (`// yagni:`), and fix-the-root-cause-not-the-reported-path; plus the interface-design three rules (discovered, not designed upfront; defined where consumed; accept interfaces, return structs) and the zero-value-useful discipline in the shared-code guide
+
+**Changed**
+
+- Extend the Status & Error Codes guide with Go-side error source discipline: codes are assigned at the binding seam layer; intermediate layers only wrap with `%w` and never assign codes; batch failures aggregate via `errors.Join` and map to codes per sub-error; panics never enter the code table
+- Extend the Long Tasks guide: bounded concurrency via `errgroup` `SetLimit` (no hand-rolled semaphores or static worker pools), every goroutine must have a known exit condition (the `goroutineleak` profile as acceptance evidence — a clean profile is evidence, not proof)
+- Add the dual-end test-discipline mapping to the ui delivery checklist (`it.each` = table-driven, snapshots = golden files with explicit review, assertion wrappers point failures back to the test case, light stubs over heavy mocks)
+
+**Fixed**
+
+- （无 / none）
+
+**Removed**
+
+- （无 / none）
+
+---
+
 ### v1.14.0 What's Changed from v1.13.0 to v1.14.0
 
 **Version type: Stable**
@@ -350,6 +375,31 @@
 ## 中文
 
 [English](#english) · 中文
+
+### v1.15.0 相比 v1.14.0 更新内容
+
+**版本类型：稳定版**
+
+**新增**
+
+- 新增《Go测试与文件系统模式方案》（专题/质量与诊断/Go测试与文件系统模式方案.md）：文件系统注入选型表（只读 `fs.FS`、读写 `afero.Fs`、不可信名字 `*os.Root`）、注入模式（构造函数即接缝、main 选实现）、MemMapFs 四差异与磁盘契约测试（`afero.NewBasePathFs(afero.NewOsFs(), t.TempDir())`——内存绿测证明的是逻辑，不是文件系统契约）、BasePathFs 不是安全边界（符号链接可逃逸——用 `os.Root`）、单测纪律（表驱动、`t.Helper()`、手写 fake 优于 mock 框架、golden files 存 `testdata/`、`cmp` 优于 DeepEqual）、错误处理三则（错误是值、wrap 用 `%w` 加上下文、批量失败 `errors.Join`）、版本门控规则（引用版本门控特性前先核对 go.mod 下限）
+- 《公共函数与Helper方案》新增写少阶梯七级（需要吗→库里→标准库→平台→go.mod→一行→最小实现）+ 永不砍清单 + `// yagni:` 命名天花板 + 修根因不修上报路径；补接口设计三条（接口是发现的不是设计的、定义在消费者包、接受接口返回具体类型）与零值可用纪律
+
+**修改**
+
+- 《状态码方案》补 Go 侧错误源头纪律：码在绑定收口层分配；中间层只 wrap（`%w`）不编码；批量失败 `errors.Join` 聚合并逐个子错误映射码；panic 不进码表
+- 《长任务与后台工作技术方案》补两条：有界并发用 `errgroup` `SetLimit`（不手搓信号量、不写静态 worker pool）；每个 goroutine 必须有已知退出条件（`goroutineleak` profile 作验收证据——干净是证据不是证明）
+- ui 交付清单补双端测试纪律映射（`it.each` = 表驱动、快照 = golden files 变更显式审查、断言包装把失败指回用例、轻 stub 优于重 mock）
+
+**修复**
+
+- （无 / none）
+
+**删除**
+
+- （无 / none）
+
+---
 
 ### v1.14.0 相比 v1.13.0 更新内容
 
