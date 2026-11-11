@@ -7,6 +7,29 @@
 <a id="english"></a>
 ## English
 
+### v1.14.0 What's Changed from v1.13.0 to v1.14.0
+
+**Version type: Stable**
+
+**Added**
+
+- Add claims-backed tests for the zero-runtime-dependency discipline: @kickoff/ui has empty `dependencies` (peer `react`/`react-dom` only) — the claims pattern now covers engineering-discipline entries, not just component behavior
+- Extend the install-directory guide with two patterns absorbed from spf13/go-skills: plan-then-apply dry-run for uninstall/cleanup/migration (afero CopyOnWriteFs evidence: delete/move commands need an explicit two-step), and trusted-root + untrusted-parts path joining (sanitize untrusted filename parts, contain within the root — recommend spf13/pathologize + fileflow or an equivalent self-implementation)
+
+**Changed**
+
+- （无 / none）
+
+**Fixed**
+
+- （无 / none）
+
+**Removed**
+
+- （无 / none）
+
+---
+
 ### v1.13.0 What's Changed from v1.12.0 to v1.13.0
 
 **Version type: Stable**
@@ -327,6 +350,29 @@
 ## 中文
 
 [English](#english) · 中文
+
+### v1.14.0 相比 v1.13.0 更新内容
+
+**版本类型：稳定版**
+
+**新增**
+
+- 新增「零运行时依赖」纪律的 claims 背书测试：@kickoff/ui 的 `dependencies` 为空（仅 peer `react`/`react-dom`）——claims 模式从组件行为扩展到工程纪律条目
+- 《默认安装目录规划方案》补入 spf13/go-skills 吸收的两项模式：卸载/清理/迁移的 plan-then-apply dry-run 两步（afero CopyOnWriteFs 实证：删除/移动类必须显式两步）；可信根 + 不可信部分的路径拼接（消毒不可信文件名段、围堵在根内——建议引入 spf13/pathologize + fileflow 或等价自实现）
+
+**修改**
+
+- （无 / none）
+
+**修复**
+
+- （无 / none）
+
+**删除**
+
+- （无 / none）
+
+---
 
 ### v1.13.0 相比 v1.12.0 更新内容
 
