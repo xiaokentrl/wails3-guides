@@ -4,8 +4,8 @@
  * 每个测试标注它背书的方案章节——断言失效 = 文档或实现之一需要更新。
  */
 import { describe, expect, it } from 'vitest';
-import { Blob as NodeBlob } from 'node:buffer';
 import { toCsvBlob } from '../lib/download';
+import pkg from '../package.json';
 
 // jsdom 的 Blob 缺 text()/arrayBuffer()——用 jsdom 原生 FileReader 读取
 function readAsText(b: Blob): Promise<string> {
@@ -24,6 +24,15 @@ function readAsBytes(b: Blob): Promise<Uint8Array> {
     fr.readAsArrayBuffer(b);
   });
 }
+
+describe('背书：ui/README——「零运行时依赖」纪律', () => {
+  it('背书「零运行时依赖：不引入 CSS-in-JS / UI 框架」：@kickoff/ui 的 dependencies 为空（仅 peer）', () => {
+    // 断言来源：ui/README.md 纪律第 6 条 + package.json
+    expect(pkg.name).toBe('@kickoff/ui');
+    expect(pkg.dependencies ?? {}).toEqual({});
+    expect(Object.keys(pkg.peerDependencies ?? {})).toEqual(expect.arrayContaining(['react', 'react-dom']));
+  });
+});
 
 describe('背书：《默认安装目录规划方案》——「所写即所录」与更新契约', () => {
   it('背书「卸载按 manifest 反向执行」：toCsvBlob 产出的 CSV 以 UTF-8 BOM 开头（Excel 直开不乱码）', async () => {
