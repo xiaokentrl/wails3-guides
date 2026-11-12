@@ -7,6 +7,37 @@
 <a id="english"></a>
 ## English
 
+### v1.16.0 What's Changed from v1.15.0 to v1.16.0
+
+**Version type: Stable**
+
+**Added**
+
+- Add 23 kickoff guides covering the gaps found in the audit, plus a new Project Governance category: binding layer & generated artifacts, CI matrix & quality gates, local secrets & key management, data model & data contracts, project scope & decision records, external links & protocol callbacks, product identity single source, production build security baseline, WebView2 runtime & graphics reliability, supply chain & dependency governance, threat modeling & security response, telemetry & privacy compliance, licensing & activation, test strategy & acceptance master guide, enterprise deployment & managed config, user docs & onboarding support, crash reporting & symbolication, client-server API contract, feature flags & remote config, in-app update experience, data portability & complete deletion, store distribution & sandbox compliance, and service dependencies & operational readiness
+- Add conditional-guide triggers and a cross-cutting authority map to both READMEs, plus evidence-level conventions and a third (evidence-review) skeleton
+
+**Changed**
+
+- Register all 23 guides in both bilingual catalogs, the directory tree and the master outline companion list; add a one-stage gating item for kickoff scope/decision records and a stage-based index of the new guides
+- Link 11 deferred items in the master outline to their governing guides, extend the one-/two-stage acceptance deliverables, and add explicit arrows from gating items to the new guides
+- Add an evidence-level note to the product-identity and supply-chain guides
+
+**Fixed**
+
+- Correct the DASVS L1/L2/L3 claim: those levels came from a third-party paraphrase while the OWASP official definition is a draft that must not be relied on; replaced with project-defined T1/T2/T3 tiers marked "to be verified"
+- Resolve the managed-policy contradiction: only explicitly locked keys outrank user preferences; unlocked explicit user settings must never be overwritten
+- Remove the test master guide self-contradiction: it restated the CI layered table while listing exactly that as a defect; layering now defers to the CI guide
+- Add the missing inbound reference to Service Dependencies & Operational Readiness so no guide is an orphan
+- Close the remaining audit gaps: register the evidence-review guide in the master outline companion list (71/71), correct the pure-Web/no-backend deferral pointer to the frontend structure guide, complete the NFR and i18n deferral pointers, extend two-stage deliverables with traceability/ADR/risk reviews, synchronize managed-policy arbitration in the in-app update guide, align the test master guide stage-one wording with its conditional status, make both README tables clickable, and fix a missing trailing newline
+- Align documentation with reality: bilingual usage rules now describe the four-section release-note format used since v1.11.0 and clarify that `lib-go/` lives in consuming projects, not this repository; CI step names and self-check docs now say six checks instead of five and reflect the current 87-case suite; the build job is skipped on tag pushes, which now matches the deploy job comment (tag pushes only need the release job)
+- Close the fifth-round full audit findings: correct the top-level bilingual README demo count (118 to 117, matching the 10-group / 117-demo registry and the ui docs), remove the last unconditional "managed policy overrides user preference" statements from the enterprise deployment guide (root-cause table and AI constraint template) that contradicted its own locked-keys-only rule, and state explicitly that conditional-guide triggers are governed by the README table and each guide's five-stage positioning rather than the master outline deferred list (the two are not one-to-one)
+
+**Removed**
+
+- （无 / none）
+
+---
+
 ### v1.15.0 What's Changed from v1.14.0 to v1.15.0
 
 **Version type: Stable**
@@ -375,6 +406,37 @@
 ## 中文
 
 [English](#english) · 中文
+
+### v1.16.0 相比 v1.15.0 更新内容
+
+**版本类型：稳定版**
+
+**新增**
+
+- 新增 23 篇立项专题（补齐审计发现的缺口），并新开「立项治理」分类：绑定层契约与生成物、CI 矩阵与质量门禁、本地敏感数据与密钥管理、数据模型与数据契约、立项范围与决策记录、外部链接与协议回调安全、产品身份单一源、生产构建安全基线、WebView2 运行时与图形可靠性、供应链安全与依赖治理、威胁建模与安全响应、遥测与隐私合规、授权与许可、测试策略与验收总纲、企业部署与托管配置、用户文档与上手支持、崩溃上报与符号还原、客户端与服务端 API 契约、特性开关与远程配置、应用内更新体验、数据可携带与彻底删除、商店分发与沙盒合规、服务依赖与运维就绪
+- 双语 README 新增「条件性专题触发条件」与「跨域主题权威归属」两节，补证据等级约定与第三种骨架（实证复盘型）
+
+**修改**
+
+- 双语清单、目录树、主大纲配套列表全量登记 23 篇新专题；一档新增立项范围准入项，附录新增按档位的专题挂接索引
+- 五档暂缓项 11 条补上对应专题的触发指向，一/二档产出清单补齐，关键准入项补「→ 见」挂接
+- 产品身份、供应链两篇补证据等级说明
+
+**修复**
+
+- 修正 DASVS L1/L2/L3 的事实错误：该分级来自第三方转述，OWASP 官方分级定义仍为草案且明示不应依赖；改为项目自定义 T1/T2/T3 档位并标「待验证」
+- 修复托管策略的内部矛盾：仅管理员明确锁定的键优于用户偏好，未锁定的用户显式设置不得覆盖
+- 修复测试总纲的自相矛盾：它一面把「复制专题矩阵」列为缺陷，一面又重复了分层表；现改为只定组织规则，分层实现以 CI 篇为权威
+- 补上《服务依赖与运维就绪方案》的入引，消除孤儿专题
+- 补齐第三轮审查发现的遗漏：主大纲配套列表收录实证复盘（71/71）、「纯 Web/无后端运行」暂缓项改指《前端目录结构方案》、完整 NFR 与多语言暂缓项补全指向、二档产出清单补追踪矩阵/ADR/风险登记复核、《应用内更新体验方案》托管裁决口径与《企业部署与托管配置方案》同步、《测试策略与验收总纲》一档定位改为与条件性一致、双语两节表格改为可点击链接、补齐一处缺失的文件末尾换行
+- 补齐第四轮审查发现的规则与实现不一致：双语使用规则改为描述 v1.11.0 起的四段发布格式，并说明 `lib-go/` 属于各新项目、本库不含该目录；CI 步骤名与自查文档由「五项」改为「六项」，测试数由 85 更新为当前 87 用例；build job 在标签推送时跳过，与「标签只需 release job 产出 Release」的注释一致
+- 补齐第五轮全面检查发现的问题：顶层双语 README 演示数由 118 更正为 117（与 registry 的 10 分组 / 117 演示及 ui 文档一致）；删除《企业部署与托管配置方案》根因表与实施约束模板中最后一处无条件的「托管策略优先于用户偏好」，消除与本篇「仅明确锁定的键优先」纪律自相矛盾；明确条件性专题触发条件以 README 表与各专题「五档定位」为准，与主大纲五档暂缓清单不一一对应
+
+**删除**
+
+- （无 / none）
+
+---
 
 ### v1.15.0 相比 v1.14.0 更新内容
 

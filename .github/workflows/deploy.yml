@@ -26,6 +26,7 @@ concurrency:
 
 jobs:
   build:
+    if: github.ref_type == 'branch' # 标签推送只需 release job 产出 Release，不重复跑质量门与 Pages 产物
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -47,11 +48,11 @@ jobs:
         run: npm run typecheck
         working-directory: .preview
 
-      - name: 测试（85 用例）
+      - name: 测试（vitest）
         run: npm test
         working-directory: .preview
 
-      - name: 五项自查
+      - name: 六项自查
         run: node scripts/check.mjs
         working-directory: ui
 

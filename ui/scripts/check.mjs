@@ -1,12 +1,13 @@
 /**
  * 组件库收尾自查（固化版）——node scripts/check.mjs
- * 五项检查（对应历史上真实踩过的坑，非纸面清单）：
+ * 六项检查（对应历史上真实踩过的坑，非纸面清单）：
  *   1. index.ts 重复导出（多批次追加曾致 28 个重复）
  *   2. KeyboardEvent 等遮蔽：从 react 导入 DOM 同名类型且挂 document 监听、
  *      又未见 globalThis. 前缀（Cascader/Popselect 曾两次踩雷，removeChild 症状伪装）
  *   3. playground demo：JSX 标签/组件调用 vs import 对照（曾 96 处错级导入）
  *   4. CSS 裸色值（hex/rgb）：组件样式只允许 var(--ui-*)（暗色适配高危）
  *   5. registry 演示 id 重复
+ *   6. 专题指南中的 go/ts/tsx 代码块可解析（gofmt / esbuild，含省略行剥离）
  * 退出码非 0 = 有 error 级问题。
  */
 import { readFileSync, readdirSync, statSync, mkdtempSync, rmSync } from 'node:fs';

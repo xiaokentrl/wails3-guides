@@ -52,7 +52,7 @@ npx vite --port 5183
 | `npm run typecheck` / `npm test` | 类型检查 / 测试 | `.preview/` |
 | `npx vitest run` | 运行全部测试（87 用例） | `.preview/` |
 | `npx tsc -p tsconfig.ui.json` | 全库 strict 类型检查 | `.preview/` |
-| `node scripts/check.mjs` | 五项自查（重复导出/DOM 类型遮蔽/demo 导入/CSS 裸色值/id 重复） | `ui/` |
+| `node scripts/check.mjs` | 六项自查（重复导出/DOM 类型遮蔽/demo 导入/CSS 裸色值/id 重复/指南代码块可解析） | `ui/` |
 | `npx vite build --base=./` | 编译**便携目录版**（相对路径 assets） | `.preview/` |
 | `npx vite build --config vite.config.singlefile.mjs` | 编译**单文件版**（全内联，双击即开） | `.preview/` |
 
@@ -149,7 +149,7 @@ ui/
 ├── integrations/       # 7 个外部库集成封装
 ├── playground/         # 演示注册表（registry + demos + 外壳）
 ├── tests/              # 10 个测试文件 · 87 用例（vitest + RTL）
-├── scripts/check.mjs   # 五项自查脚本
+├── scripts/check.mjs   # 六项自查脚本
 └── docs/               # 组件卡 · 全景 · 交付清单 · 可运行示例
 ```
 
