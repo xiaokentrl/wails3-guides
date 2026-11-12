@@ -7,6 +7,30 @@
 <a id="english"></a>
 ## English
 
+### v1.17.0 What's Changed from v1.16.0 to v1.17.0
+
+**Version type: Stable**
+
+**Added**
+
+- （无 / none）
+
+**Changed**
+
+- Complete the master outline's stage-four table with an acceptance-evidence column: its opening rule says every item is filled in two parts (core question → acceptance evidence), yet the 12 stage-four rows had only two columns while stages one to three had three. Each row now carries an observable artifact (SBOM output plus CI job logs, allowlisting receipts, cross-volume update drill record, symbolication test, and so on)
+
+**Fixed**
+
+- Remove the duplicate `build:pages` key in .preview/package.json: v1.8.0 claimed it aliased to `build`, but a second, older definition later in the same scripts object silently overrode it, so `npm run build:pages` still rebuilt only the portable output and copied a stale single-file HTML. The single remaining key now resolves to `npm run build`
+- Correct the test-suite count from 87 to 88 in ui/README.md and ui/docs/交付清单.md, verified by actually running vitest (10 files, 88 passing)
+- Reorder the release job in the deploy workflow so `npm ci` runs before the `node_modules` symlink is created, matching the build job and avoiding a dangling link during dependency installation; add the missing trailing newline to .preview/package.json
+
+**Removed**
+
+- （无 / none）
+
+---
+
 ### v1.16.0 What's Changed from v1.15.0 to v1.16.0
 
 **Version type: Stable**
@@ -406,6 +430,30 @@
 ## 中文
 
 [English](#english) · 中文
+
+### v1.17.0 相比 v1.16.0 更新内容
+
+**版本类型：稳定版**
+
+**新增**
+
+- （无 / none）
+
+**修改**
+
+- 补齐主大纲四档表格的「验收证据」列：总纲开头要求「每项按两段填写：核心问题 → 验收证据」，但一~三档为 3 列、四档 12 项只有 2 列。现逐条补入可观察证据（SBOM 产物 + job 日志、白名单提交回执、跨卷更新演练记录、符号还原实测等），四档与其他档同构
+
+**修复**
+
+- 删除 .preview/package.json 中重复的 `build:pages` 键：v1.8.0 声称已别名到 `build`，但 scripts 对象后部还留着一份旧定义，JSON 后者覆盖前者，`npm run build:pages` 实际仍只重建便携版并拷贝上次残留的单文件 HTML；现仅留唯一键，解析生效值为 `npm run build`
+- 测试数由 87 更正为 88（`ui/README.md`、`ui/docs/交付清单.md`），依据实际执行 `vitest run`（10 文件 / 88 用例全绿）
+- 调整部署工作流 release job 顺序：`npm ci` 先于建立 `node_modules` 符号链接，与 build job 一致，避免依赖安装期间链接悬空；并补上 .preview/package.json 缺失的末尾换行
+
+**删除**
+
+- （无 / none）
+
+---
 
 ### v1.16.0 相比 v1.15.0 更新内容
 

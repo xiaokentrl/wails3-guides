@@ -36,9 +36,8 @@
     "build:portable": "vite build --base=./",
     "build:single": "vite build --config vite.config.singlefile.mjs",
     "copy:single": "node -e \"const fs=require('fs');if(fs.existsSync('dist-single/index.html')){fs.copyFileSync('dist-single/index.html','dist/standalone.html')}else{throw new Error('dist-single/index.html missing — run build:single first')}\"",
-    "build:pages": "npm run build",
     "test": "vitest run",
     "typecheck": "tsc -p tsconfig.ui.json",
-    "build:pages": "vite build --base=./ && node -e \"const fs=require('fs');const path=require('path');const src='dist-single/index.html';const dst='dist/standalone.html';if(fs.existsSync('dist-single/index.html')){fs.copyFileSync(src,dst)}else{console.log('skip: no dist-single')}\""
+    "build:pages": "npm run build"
   }
 }

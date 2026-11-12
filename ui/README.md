@@ -15,7 +15,7 @@
 | 集成封装（integrations/） | 7（echarts / leaflet / monaco / xterm / tiptap / tldraw / qrcode） |
 | index.ts 导出名 | 193 |
 | playground 演示 | 117 项 / 10 分组 |
-| 测试 | 10 文件 · 87 用例全绿（已真实执行） |
+| 测试 | 10 文件 · 88 用例全绿（已真实执行） |
 
 ---
 
@@ -50,7 +50,7 @@ npx vite --port 5183
 | `npx vite --port 5183` | 启动 playground 预览 | `.preview/` |
 | `npm run build` | 打包：**自动产出便携目录版 + 纯静态单文件 HTML**（→ `dist/`） | `.preview/` |
 | `npm run typecheck` / `npm test` | 类型检查 / 测试 | `.preview/` |
-| `npx vitest run` | 运行全部测试（87 用例） | `.preview/` |
+| `npx vitest run` | 运行全部测试（88 用例） | `.preview/` |
 | `npx tsc -p tsconfig.ui.json` | 全库 strict 类型检查 | `.preview/` |
 | `node scripts/check.mjs` | 六项自查（重复导出/DOM 类型遮蔽/demo 导入/CSS 裸色值/id 重复/指南代码块可解析） | `ui/` |
 | `npx vite build --base=./` | 编译**便携目录版**（相对路径 assets） | `.preview/` |
@@ -148,7 +148,7 @@ ui/
 ├── business/           # 业务组件：SearchForm · AdvancedTable · OrgSelector
 ├── integrations/       # 7 个外部库集成封装
 ├── playground/         # 演示注册表（registry + demos + 外壳）
-├── tests/              # 10 个测试文件 · 87 用例（vitest + RTL）
+├── tests/              # 10 个测试文件 · 88 用例（vitest + RTL）
 ├── scripts/check.mjs   # 六项自查脚本
 └── docs/               # 组件卡 · 全景 · 交付清单 · 可运行示例
 ```

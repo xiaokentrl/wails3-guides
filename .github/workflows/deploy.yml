@@ -120,11 +120,11 @@ jobs:
           cache: npm
           cache-dependency-path: .preview/package-lock.json
 
-      - name: 建立依赖符号链接（ui/ 解析依赖用）
-        run: ln -s .preview/node_modules node_modules
-
       - run: npm ci
         working-directory: .preview
+
+      - name: 建立依赖符号链接（ui/ 解析依赖用）
+        run: ln -s .preview/node_modules node_modules
 
       - run: npm run build:single
         working-directory: .preview
