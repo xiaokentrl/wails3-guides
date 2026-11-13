@@ -1,6 +1,6 @@
 {
   "name": "@kickoff/ui",
-  "version": "1.17.0",
+  "version": "1.18.0",
   "private": true,
   "description": "Cross-engine shared component library (React 18 + TS, zero runtime deps, CSS-variable tokens). See docs/COMPONENTS.md.",
   "type": "module",

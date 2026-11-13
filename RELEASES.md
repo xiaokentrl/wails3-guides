@@ -7,6 +7,28 @@
 <a id="english"></a>
 ## English
 
+### v1.18.0 What's Changed from v1.17.0 to v1.18.0
+
+**Version type: Stable**
+
+**Added**
+
+- Add the Tray Localization guide (专题/桌面集成/托盘多语言方案.md): all tray-visible text follows the user's language setting — Go-side language decision chain (persisted setting as single source → first-launch system-locale probe per platform, marked to-be-verified → baseline fallback with a warning), a localization checklist covering menu items / submenu titles / tooltip / tray-initiated notifications and dialogs (checkmark state carried by native APIs, never baked into copy; separators and icons not localized), switch rebuild atomicity (swap the loader language first, build the complete new menu then one atomic SetMenu — no per-item label updates), a three-platform rebuild difference table (Windows shown-state, macOS open-menu window, Linux AppIndicator/DBus caching — each verified against the locked Wails3 version), fallback to restart-effectiveness with an explicit notice in settings (never silent), and dual-end language-consistency defenses (tray = setting = frontend, identity enforced, mismatches are defects)
+
+**Changed**
+
+- （无 / none）
+
+**Fixed**
+
+- （无 / none）
+
+**Removed**
+
+- （无 / none）
+
+---
+
 ### v1.17.0 What's Changed from v1.16.0 to v1.17.0
 
 **Version type: Stable**
@@ -430,6 +452,28 @@
 ## 中文
 
 [English](#english) · 中文
+
+### v1.18.0 相比 v1.17.0 更新内容
+
+**版本类型：稳定版**
+
+**新增**
+
+- 新增《托盘多语言方案》（专题/桌面集成/托盘多语言方案.md）：托盘一切用户可见文字随用户设置语言显示——Go 侧语言判定链（持久化设置为单源 → 首启按平台探测系统语言（标待验证）→ 基准回退并记警告）、本地化清单逐项对表（菜单项/子菜单标题/tooltip/托盘发起的通知与对话框——勾选态由原生 API 承担不写进文案，分隔符与图标不本地化）、切换重建原子性（先换加载器语言后重建、完整构建新菜单后一次原子替换 SetMenu，禁逐项改标签）、三平台重建差异表（Windows 弹出态、macOS 菜单打开期不可换、Linux AppIndicator/DBus 缓存——逐项按锁定 Wails3 版本验证）、不可重建平台降级重启生效且设置页明示（不静默）、双端语言一致性防御（托盘=设置=前端三处恒等，不一致即缺陷）
+
+**修改**
+
+- （无 / none）
+
+**修复**
+
+- （无 / none）
+
+**删除**
+
+- （无 / none）
+
+---
 
 ### v1.17.0 相比 v1.16.0 更新内容
 
