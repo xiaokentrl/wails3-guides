@@ -7,6 +7,31 @@
 <a id="english"></a>
 ## English
 
+### v1.20.0 What's Changed from v1.19.0 to v1.20.0
+
+**Version type: Stable**
+
+**Added**
+
+- Add the Dual Tree Confirmation Gate guide (专题/立项治理/目录树双确认门方案.md): a hard gate before the first line of code — the dev tree (present/planned/generated three-state annotation, generated artifacts listed separately) and the post-install final tree (four-column annotations: path / category / creator / uninstall disposition; config & hidden files, installer artifacts and a first-launch creation list as dedicated sections) are both submitted for the user's explicit confirmation (silence is not consent; the confirmed snapshot goes into the project package as an ADR-grade artifact)
+- Minimal-footprint discipline: three questions per node (why must it exist / who creates it / who cleans it — fail any and it's deleted), an explicit top-level new-directory budget per platform, and a six-item anti-scatter red-flag list (ini next to the exe, bare HOME dotfiles, cache mixed into config, unregistered shortcuts, upgrade leftovers, hardcoded temp paths)
+- Parametrized-tree rule for user-specifiable install roots (Windows user-chosen directory per the resolution chain, Linux per-user/system): the gate confirms the tree template (default-root tree + adjustable scope and boundaries + re-rooting derivation rules), the snapshot = template + default-root live sample, and implementation verification runs two scenarios (default root and a user-defined root rearranged by the derivation rules) with invalid roots flagged red in the preview tree
+- Dev↔install tree traceability mapping with zero orphans, and CI checks: fresh-install diff = confirmed snapshot, first-launch 24h full-disk diff with no out-of-contract files, uninstall-clean verification
+
+**Changed**
+
+- （无 / none）
+
+**Fixed**
+
+- （无 / none）
+
+**Removed**
+
+- （无 / none）
+
+---
+
 ### v1.19.0 What's Changed from v1.18.0 to v1.19.0
 
 **Version type: Stable**
@@ -475,6 +500,31 @@
 ## 中文
 
 [English](#english) · 中文
+
+### v1.20.0 相比 v1.19.0 更新内容
+
+**版本类型：稳定版**
+
+**新增**
+
+- 新增《目录树双确认门方案》（专题/立项治理/目录树双确认门方案.md）：写第一行代码前的硬门——开发树（存在/规划/生成三态标注，生成物单列）与安装终态树（逐节点四列：路径/类别/创建者/卸载处置；配置与隐藏文件、安装器自产物、首启创建清单各单列成节）交用户**显式确认**（沉默不算授权，确认快照入立项包作 ADR 级产物）
+- 最小侵占纪律：每节点三问（为什么必须在/谁创建/谁清理——答不出即删）、三平台顶层新增目录数显式预算、六条拉屎红旗清单（exe 旁 ini、HOME 裸 dotfile、缓存混配置、快捷方式未登记、升级残留、临时文件写死）
+- 可指定安装根平台的参数化树规则（Windows 用户指定目录按解析链、Linux per-user/system 两档）：确认对象是树模板（默认根树 + 可改范围边界 + 改根推导规则），快照 = 模板 + 默认根实装样张，实装对照跑两场景（默认根 + 用户自定义根按推导规则重排），非法根在预览树标红禁用
+- 两树互溯映射零孤儿 + CI 对照：全新安装 diff = 确认快照、首启 24h 全盘 diff 无契约外文件、卸载净空核验
+
+**修改**
+
+- （无 / none）
+
+**修复**
+
+- （无 / none）
+
+**删除**
+
+- （无 / none）
+
+---
 
 ### v1.19.0 相比 v1.18.0 更新内容
 
