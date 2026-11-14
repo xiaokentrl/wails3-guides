@@ -7,6 +7,29 @@
 <a id="english"></a>
 ## English
 
+### v1.19.0 What's Changed from v1.18.0 to v1.19.0
+
+**Version type: Stable**
+
+**Added**
+
+- Update the Signing & Distribution guide with a hardened download-link shape: full resumable-download semantics — fixed-name partials (claimed by the cleanup-ownership gate), Range + If-Range validator identity checking (version-string comparison cannot catch same-version re-publishing), a response-branch semantics table (206 consistent resume / 200 full restart / 416 deadlock teardown / Content-Range mismatch restart, with a capped controlled-retry loop), sidecar timing discipline (validator written after truncation succeeds, cleared once the artifact lands, partial deletion removes sidecars), finished-artifact short-circuit reuse (backstopped by the final verification gate), paired maintenance of keep-by-name cleanup and resume preconditions, a dedicated stable code for download mutual exclusion, metadata self-healing semantics, and a "do once after each release" end-to-end live-test checklist (real weak network, including failure branches)
+- Update the In-App Update Experience guide with download-progress and double-click discipline: independent progress events (200ms cadence + final completion value, clamped percentage, degraded branch without a total length), entries that would displace the download display locked while downloading, stale handoff reset when a newer version is detected, recovery or accurate copy on panel remount, and an optional note for instant completion via finished-artifact reuse
+
+**Changed**
+
+- （无 / none）
+
+**Fixed**
+
+- （无 / none）
+
+**Removed**
+
+- （无 / none）
+
+---
+
 ### v1.18.0 What's Changed from v1.17.0 to v1.18.0
 
 **Version type: Stable**
